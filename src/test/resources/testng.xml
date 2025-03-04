@@ -1,0 +1,38 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<!--<suite name="Suite" verbose="1" parallel="tests" thread-count="3">-->
+<!--    <test name="DemoQATests">-->
+<suite name="Suite" verbose="1">
+    <test name="DemoQATests" parallel="none" thread-count="1">
+        <groups>
+            <run>
+                <exclude name="broken"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="UI.MainPageTest"/>
+            <class name="UI.TextBox"/>
+            <class name="UI.CheckBoxTest"/>
+            <class name="UI.RadioButtonTest"/>
+            <class name="UI.ButtonTest"/>
+            <class name="UI.LinksTest"/>
+            <class name="UI.BrokenLinksTest"/>
+            <class name="UI.DownloadUploadTest"/>
+            <class name="UI.DynamicPropertiesTest"/>
+            <class name="UI.SelectMenuTest"/>
+        </classes>
+    </test>
+<!--    <test name="GoogleTests">-->
+<!--        <classes>-->
+<!--            <class name="UI.GoogleTest"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+<!--    <test name="SeleniumTests">-->
+<!--        <classes>-->
+<!--            <class name="UI.SeleniumPageTest"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+
+    <listeners>
+        <listener class-name="utils.ExtentTestNGListener"/>
+    </listeners>
+</suite>
