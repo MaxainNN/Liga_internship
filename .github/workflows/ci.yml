@@ -9,7 +9,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
       - name: Checkout code
@@ -29,8 +29,8 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-m2-
 
-      - name: Rename ChromeDriver for Linux
-        run: mv src/main/resources/chromedriver src/main/resources/chromedriver.exe
+#      - name: Rename ChromeDriver for Linux
+#        run: mv src/main/resources/chromedriver src/main/resources/chromedriver.exe
 
       - name: Build and test with Maven
         run: mvn clean test
