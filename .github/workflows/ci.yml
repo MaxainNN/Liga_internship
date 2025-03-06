@@ -5,6 +5,7 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
+  workflow_dispatch:
 
 jobs:
   build:
@@ -29,7 +30,15 @@ jobs:
             ${{ runner.os }}-m2-
 
       - name: Build and test with Maven
-        run: mvn clean test -Dwebdriver.chrome.driver=$(pwd)/src/main/resources/chromedriver
+        run: |
+          if [[ "$RUNNER_OS" == "Linux" ]]; then
+            mvn clean test -Dwebdriver.chrome.driver=$(pwd)/src/main/resources/chromedriver
+          elif [[ "$RUNNER_OS" == "Windows" ]]; then
+            mvn clean test -Dwebdriver.chrome.driver=$(pwd)/src/main/resources/chromedriver.exe
+          else
+            echo "Unsupported OS"
+            exit 1
+          fi
 
       - name: Deploy report to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
