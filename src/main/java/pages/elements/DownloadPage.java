@@ -70,7 +70,7 @@ public class DownloadPage extends BasePage {
      * **/
     public boolean isFileDownloaded(String filePath){
         File downloadedFile = new File(filePath);
-        new WebDriverWait(driver, Duration.ofSeconds(20)).until(d -> downloadedFile.exists());
+        new WebDriverWait(driver, Duration.ofSeconds(15)).until(d -> downloadedFile.exists());
         return downloadedFile.exists();
     }
 }
