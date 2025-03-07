@@ -23,7 +23,7 @@ public class ButtonTest extends BaseTest {
     public void step_01(){
         buttonsPage.openButtonsPage();
         buttonsPage.doubleClick(DOUBLE_CLICK_BTN);
-        buttonsPage.waitForSeconds(6);
+        buttonsPage.waitForSeconds(10);
         Assert.assertTrue(buttonsPage.isMessageDisplay(MESSAGE_DOUBLE_CLICK));
     }
 
