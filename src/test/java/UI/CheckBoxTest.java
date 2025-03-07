@@ -19,13 +19,13 @@ public class CheckBoxTest extends BaseTest {
     }
 
     @Test(description = "Перейти на страницу")
-    public void step_1(){
+    public void step_01(){
         checkBoxPage.openCheckBoxPage();
         Assert.assertEquals(checkBoxPage.getPageName(), Item.CHECK_BOX.getName());
     }
 
     @Test(description = "Развернуть чекбосы 'Home', отметить чекбокс 'Desktop'")
-    public void step_2(){
+    public void step_02(){
         checkBoxPage.openListCheckBox("Home");
         checkBoxPage.setCheckBox("Desktop",true);
         Assert.assertTrue(checkBoxPage.getCheckBoxState("Desktop"));

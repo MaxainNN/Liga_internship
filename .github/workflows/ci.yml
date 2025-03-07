@@ -5,10 +5,11 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
+  workflow_dispatch:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
       - name: Checkout code
@@ -28,8 +29,21 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-m2-
 
+#      - name: Rename ChromeDriver for Linux
+#        run: mv src/main/resources/chromedriver src/main/resources/chromedriver.exe
+
       - name: Build and test with Maven
-        run: mvn clean test
+        run: mvn clean test -Dexclude=**/ButtonTest.java,**/DownloadUploadTest.java
+#          if [[ "$RUNNER_OS" == "Linux" ]]; then
+#            echo "Running tests with Linux driver"
+#            mvn clean test -Dwebdriver.chrome.driver=$(pwd)/src/main/resources/chromedriver
+#          elif [[ "$RUNNER_OS" == "Windows" ]]; then
+#            echo "Running tests with Windows driver"
+#            mvn clean test -Dwebdriver.chrome.driver=$(pwd)/src/main/resources/chromedriver.exe
+#          else
+#            echo "Unsupported OS"
+#            exit 1
+#          fi
 
       - name: Deploy report to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3

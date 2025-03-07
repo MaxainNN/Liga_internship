@@ -63,7 +63,7 @@ public abstract class BaseTest {
      * **/
     @AfterClass
     public void tearDownClass(){
-        System.out.println("Tearing down after each all test's methods in class.");
+        System.out.println("Tearing down after all test's methods in class.");
         if (driver != null) {
             driver.quit();
         }
@@ -76,7 +76,7 @@ public abstract class BaseTest {
      * **/
     @AfterTest
     public void tearDownTest(){
-        System.out.println("Tearing down after each all test's methods.");
+        System.out.println("Tearing down after all test's methods.");
 //        if (driver != null) {
 //            driver.quit();
 //        }

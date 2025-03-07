@@ -98,9 +98,9 @@ mvn clean test
 - ISTQB Certified Tester - Foundation Level Syllabus v4.0
 
 # Что изучить еще:
-- Devtools
+- `Devtools` , умение пользоваться консолью в браузере.
 - Подход чтения настроек из файлов типа `.env` и `.properties`
-- Запуск тестов с использованием Proxy
+- Запуск тестов с использованием `Proxy`
 - `RestAssured` <img src="images/restassured_icon.png" alt="Restassured" width="25" height="25"> - инструмент для тестирования API на java
 - `WebDriverManager` <img src="images/WebDriverM_Icon.png" alt="WebDriverManager" width="25" height="25"> - библиотека для загрузки и инициализации драйвера актуальной версии
 - `Allure Report` <img src="images/allure_icon.png" alt="AllureReport" width="25" height="25"> - инструмент для генерации отчета по результатам тестов
