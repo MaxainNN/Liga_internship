@@ -14,17 +14,44 @@
 - Framework для создания отчетов <img src="images/extent_report_ico.jfif" alt="ExtentReport" width="48" height="48"> `ExtentReport` Версии 5.1
 
 
-# Описание стуктуры проекта:
+# Описание структуры проекта:
 
-- `src/main/java/browser` - Классы конфигурации браузера
-- `src/main/java/constant` - Enum файлы для получения значений списка
-- `src/main/java/pages` - Классы с описанием страниц
-- `src/main/java/utils` - Вспомогательные классы
-- `src/main/resources` - Ресурсы для проекта (расположение драйвера)
-- `src/test/java/base` - Базовый класс теста
-- `src/test/java/UI` - Классы для тесирования UI (интерфейса веб-сервиса)
-- `src/test/java/utils` - Вспомогательные классы для тестов (листенер)
-- `src/test/resources` - Ресурсы для тестов
+```plaintext
+├── src
+│   ├── main
+│   │   ├── java
+│   │   │   ├── browser # Классы конфигурации браузера
+│   │   │   │   ├── Browser.java # Инициализация и конфигурация браузера
+│   │   │   │   ├── Config.java # Дополнительная конфинурация браузера
+│   │   │   │   └── Path.java # Пути директорий
+│   │   │   ├── constant # Enum файлы для получения значений списка
+│   │   │   │   ├── CategoryCards.java # Категории вкладок
+│   │   │   │   ├── Item.java # Элементы из списка
+│   │   │   │   └── LocatorsType.java # Типы локаторов    
+│   │   │   ├── pages  # Классы с описанием страниц
+│   │   │   │   ├── base # Базовый класс
+│   │   │   │   ├── elements # Классы для страницы с "Элементами"
+│   │   │   │   ├── google # Класс для страницы "Google"
+│   │   │   │   ├── main # Класс для основной страницы
+│   │   │   │   ├── secondPage # Класс для основной страницы со списком категорий
+│   │   │   │   ├── seleniumPage # Класс для страницы "Selenium.dev"
+│   │   │   │   └── widgets # Класс для страницы с "Виджетами"
+│   │   │   └── utils # Вспомогательные классы
+│   │   │       └── DataGenerator.java # Вспомогательный класс для генерации данных
+│   │   └── resources # Ресурсы для проекта (Драйверы)
+│   └── test
+│       ├── java
+│       │   ├── base # Базовый класс теста
+│       │   │   └── BaseTest.java # Базовый класс для инициализации и завершения тестов
+│       │   ├── UI  # Классы для тестирования UI (интерфейса веб-сервиса)
+│       │   └── utils # Вспомогательные классы для тестов
+│       │       └── ExtentTestNGListener.java  # Листенер для обработки событий тестов
+│       └── resources  # Ресурсы для тестов
+│           ├── downloadFiles # Загруженные файлы после тестов        
+│           ├── testFiles # Тестовые файлы для загрузки
+│           └── testng.xml # Конфигурация TestNG
+└──
+```
 
 
 # Комментарии по стилю кода:
@@ -37,7 +64,7 @@
 - В качестве браузера по умолчанию выбран - <img src="images/chrome_icon.png" alt="Chrome" width="25" height="25"> Chrome версии 133.0.6943.141 (актуальной на момент создания проекта). Для запуска возможно потребуется актуализация.
 - Также есть возможность запуска тестов в <img src="images/firefox_icon.png" alt="Firefox" width="25" height="25"> Firefox (версии 135.0.1) и <img src="images/egde_icon.png" alt="Edge" width="25" height="25"> Edge (версии 133.0.3065.92) браузерах. Для настройки использовать класс `Config`
 - Использованы драйверы для OS - <img src="images/windows_icon.png" alt="Windows" width="25" height="25"> `Windows`. Для тестирования на <img src="images/linux_icon.png" alt="Linux" width="25" height="25"> `Linux` требуется скачать соответствующий драйвер.
-- Используется CI pipeline в качестве примера
+- Используется CI pipeline для GitHub Actions в качестве примера
 
 # Для скачивания проекта:
 1. Нажать на зеленую кнопку "`Code`"
@@ -47,11 +74,11 @@
 5. Нажать "`Clone`"
 
 # Для запуска проекта необходимы:
-1. `Java` <img src="images/icons8-java-48.png" alt="Java_logo" width="30" height="30"> 22 версии и выше
-2. `Maven` <img src="images/icons8-apache-a-free-and-open-source-cross-platform-web-server-software-48.png" alt="Maven_logo" width="30" height="30"> версии 3.9.8 и выше
+- `Java` <img src="images/icons8-java-48.png" alt="Java_logo" width="30" height="30"> 22 версии и выше
+- `Maven` <img src="images/icons8-apache-a-free-and-open-source-cross-platform-web-server-software-48.png" alt="Maven_logo" width="30" height="30"> версии 3.9.8 и выше
 # Также рекомендуется использовать:
-3. `Git` <img src="images/git_icon.png" alt="Git_logo" width="30" height="30"> версии 2.45 и выше
-4. `IntellIJ Idea` <img src="images/idea_icon.png" alt="Idea_logo" width="30" height="30"> версии 2023.3.7 `Community edition` и выше
+- `Git` <img src="images/git_icon.png" alt="Git_logo" width="30" height="30"> версии 2.45 и выше
+- `IntellIJ Idea` <img src="images/idea_icon.png" alt="Idea_logo" width="30" height="30"> версии 2023.3.7 `Community edition` и выше
 
 Проверка в консоли:
 
