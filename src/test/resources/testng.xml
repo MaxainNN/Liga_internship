@@ -1,4 +1,6 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<!-- Для настройки многопоточности раскомментировать строчки -->
+<!-- текущие suite и test закомментировать -->
 <!--<suite name="Suite" verbose="1" parallel="tests" thread-count="3">-->
 <!--    <test name="DemoQATests">-->
 <suite name="Suite" verbose="1">

@@ -109,7 +109,8 @@ mvn clean test
 <img src="images/Report_example_negative.png" alt="Тест упал" width="500" height="300">
 
 # Полезные ссылки:
-- https://demoqa.com/ - сайт для тренировки написания UI тестов (Используется в проекте)
+- https://demoqa.com/ - сайт для тренировки написания UI тестов с различными формами (Используется в проекте)
+- https://www.saucedemo.com/ - сайт для тренировки UI тестов в виде магазина (Используется в проекте (пока нет))
 - https://testengineer.ru/selenium-webdriver-java-cheat-sheet/ - Примеры использования методов Selenium
 - http://85.192.34.140:8081/ - Тренажер для UI тестов (аналог DemoQA)
 - https://googlechromelabs.github.io/chrome-for-testing/ - страница для скачивания драйверов для Chrome
@@ -143,6 +144,15 @@ mvn clean test
 - `Grafana` <img src="images/grafana_icon.jfif" alt="Grafana" width="25" height="25"> - сервис для просмотра метрик
 
 <img src="images/Liga_img_1.webp" alt="Логотип компании" width="300" height="300">
+
+## TODO
+1) Актуализировать текущие версии драйверов
+2) Исправить `Code Style` , убрать "*" в нижней строчке
+3) Добавить несколько тестов с `Widgets` формы
+4) Добавить новые методы в `BaseTest`
+5) Добавить тесты на `Sausedemo`
+6) Обновить `testng.xml`
+7) В `CI` файле вынести нестабильные тесты в отдельную группу
 
 **Автор:** [Калугин М.С.](https://github.com/MaxainNN)  
 **Компания:** [Лига Цифровой Экономики](https://www.digitalleague.ru/)
