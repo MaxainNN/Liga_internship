@@ -24,7 +24,7 @@ import static browser.Path.SCREENSHOT_DIR;
 
 /**
  * Кастомный листенер для генерации отчета
- * **/
+ */
 public class ExtentTestNGListener implements ITestListener {
 
     private ExtentReports extent = new ExtentReports();
@@ -108,7 +108,7 @@ public class ExtentTestNGListener implements ITestListener {
      * @param driver экземпляр WebDriver
      * @param testName Имя теста
      * @return Путь к сохраненному скриншоту
-     * **/
+     */
     private String takeScreenshot(WebDriver driver, String testName){
         if (driver instanceof TakesScreenshot) {
             File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);

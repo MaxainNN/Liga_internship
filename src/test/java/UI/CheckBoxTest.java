@@ -9,7 +9,7 @@ import pages.elements.CheckBoxPage;
 
 /**
  * Тест на "Check Box"
- * **/
+*/
 public class CheckBoxTest extends BaseTest {
     private CheckBoxPage checkBoxPage;
 

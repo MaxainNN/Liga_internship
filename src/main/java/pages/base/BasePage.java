@@ -17,8 +17,9 @@ import static browser.Config.EXPLICIT_WAIT;
 
 /**
  * Базовый класс для страницы. Методы , описанные в этом классе будут доступны для наследников.
- * **/
+*/
 public class BasePage {
+
     protected WebDriver driver;
 
     public BasePage(WebDriver driver) {
@@ -27,26 +28,29 @@ public class BasePage {
 
     /**
      * Локатор до картинки в шапке (header'е) страницы
-     * **/
+     */
     public static final By HEADER_XPATH = By.xpath("//header/a[@href='https://demoqa.com'][img[@src='/images/Toolsqa.jpg']]");
+
     /**
      * Локаторы для взаимодействия с чек-боксами на странице "Check Box"
-     * **/
+     */
     public static final String CHECK_BOX_INPUT_XPATH = "//input[@type='checkbox'][following-sibling::span[text()='%s']]";
     public static final String CHECK_BOX_XPATH = CHECK_BOX_INPUT_XPATH + "/following-sibling::span[@class='rct-checkbox']";
+
     /**
      * Локатор до названия страницы в средней части страницы
-     * **/
+     */
     public static final By NAME_PAGE = By.xpath("//h1[@class='text-center']");
+
     /**
      * Локатор для взаимодействия с кнопками
-     * **/
+     */
     public static final String BUTTON_XPATH = "//*[@type='button' and text()='%s']";
 
     /**
      * Перейти по url
      * @param url ссылка в формате строки
-     * **/
+     */
     public void openUrl(String url) {
         driver.get(url);
     }
@@ -55,7 +59,7 @@ public class BasePage {
      * Найти элемент на странице
      * @param locator путь до элемента, тип - By
      * @return element
-     * **/
+     */
     public WebElement findElement(By locator) {
         WebElement element = driver.findElement(locator);
         JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -67,7 +71,7 @@ public class BasePage {
      * Найти элементЫ на странице
      * @param locator путь до элемента, тип - By
      * @return elements
-     * **/
+     */
     public List<WebElement> findElements(By locator) {
         return driver.findElements(locator);
     }
@@ -76,7 +80,7 @@ public class BasePage {
      * Ожидание - Элемент видимый
      * @param locator путь до элемента, тип - By
      * @param second время ожидания в секундах
-     * **/
+     */
     public void waitElementIsVisible(By locator, int second) {
         new WebDriverWait(driver, Duration.ofSeconds(second)).until(ExpectedConditions.visibilityOf(findElement(locator)));
     }
@@ -85,7 +89,7 @@ public class BasePage {
      * Ожидание - Элемент отображается
      * @param locator путь до элемента, тип - By
      * @param second время ожидания в секундах
-     * **/
+     */
     public void waitElementIsDisplay(By locator, int second) {
         new WebDriverWait(driver, Duration.ofSeconds(second)).until(d -> isElementDisplay(locator));
     }
@@ -94,7 +98,7 @@ public class BasePage {
      * Ожидание - Элемент доступен
      * @param locator путь до элемента, тип - By
      * @param second время ожидания в секундах
-     * **/
+     */
     public void waitForElementsEnabled(By locator, int second){
         new WebDriverWait(driver, Duration.ofSeconds(second)).until(d -> isElementEnabled(locator));
     }
@@ -102,7 +106,7 @@ public class BasePage {
     /**
      * Ожидание - Элемент видимый c неявным ожиданием
      * @param locator путь до элемента, тип - By
-     * **/
+     */
     public void waitElementIsVisible(By locator) {
         waitElementIsVisible(locator, EXPLICIT_WAIT);
     }
@@ -110,7 +114,7 @@ public class BasePage {
     /**
      * Кликнуть на элемент
      * @param locator путь до элемента, тип - By
-     * **/
+     */
     public void click(By locator) {
         findElement(locator).click();
     }
@@ -118,15 +122,16 @@ public class BasePage {
     /**
      * Дважды кликнуть на элемент
      * @param locator путь до элемента, тип - By
-     * **/
+     */
     public void doubleClick(By locator){
         Actions actions = new Actions(driver);
         actions.doubleClick(findElement(locator)).perform();
     }
+
     /**
      * Кликнуть на элементе правой кнопкой
      * @param locator путь до элемента, тип - By
-     * **/
+     */
     public void contextClick(By locator){
         Actions actions = new Actions(driver);
         actions.contextClick(findElement(locator)).perform();
@@ -144,7 +149,7 @@ public class BasePage {
      * Внести значение в поле
      * @param locator путь до элемента, тип - By
      * @param text текст
-     * **/
+     */
     public void sendKeys(By locator, String text) {
         findElement(locator).sendKeys(text);
     }
@@ -153,7 +158,7 @@ public class BasePage {
      * Очистить значение в поле , затем внести значение
      * @param locator путь до элемента, тип - By
      * @param text текст
-     * **/
+     */
     public void sendKeysWithClear(By locator, String text){
         clear(locator);
         sendKeys(locator,text);
@@ -162,7 +167,7 @@ public class BasePage {
     /**
      * Получить текст из элемента
      * @param locator путь до элемента, тип - By
-     * **/
+     */
     public String getText(By locator) {
         return findElement(locator).getText();
     }
@@ -171,7 +176,7 @@ public class BasePage {
      * Проверка - Элемент отображается
      * @param locator путь до элемента, тип - By
      * @return true если отображается
-     * **/
+     */
     public boolean isElementDisplay(By locator) {
         try {
             return findElement(locator).isDisplayed();
@@ -183,7 +188,7 @@ public class BasePage {
     /**
      * Проверка элемент доступен
      * @return true если доступен
-     * **/
+     */
     public boolean isElementEnabled(By locator){
         return findElement(locator).isEnabled();
     }
@@ -191,7 +196,7 @@ public class BasePage {
     /**
      * Проверка - Header отображается
      * @return true если отображается
-     * **/
+     */
     public boolean isHeaderDisplayed() {
         return isElementDisplay(HEADER_XPATH);
     }
@@ -200,7 +205,7 @@ public class BasePage {
      * Получить количество элементов
      * @param locator путь до элемента, тип - By
      * @return element's size
-     * **/
+     */
     public int getElementsCount(By locator) {
         return findElements(locator).size();
     }
@@ -209,7 +214,7 @@ public class BasePage {
      * Получение статуса состояния чекбокса
      * @param checkBoxName путь до элемента, тип - String
      * @return true если отмечен
-     * **/
+     */
     public boolean getCheckBoxState(String checkBoxName){
         return findElement(By.xpath(String.format(CHECK_BOX_INPUT_XPATH,checkBoxName))).isSelected();
     }
@@ -229,7 +234,7 @@ public class BasePage {
      * Получение статуса состояния радиобаттона
      * @param locator путь до элемента, тип - By
      * @return true если отмечен
-     * **/
+     */
     public boolean getRadioButtonState(By locator){
         return findElement(locator).isSelected();
     }
@@ -237,7 +242,7 @@ public class BasePage {
     /**
      * Отметить радио-баттон
      * @param locator путь до элемента, тип - By
-     * **/
+     */
     public void setRadioButton (By locator){
         click(locator);
     }
@@ -246,7 +251,7 @@ public class BasePage {
      * Метод для построения локатора исходя из типа локатора, содержимого
      * @param textLocator текст, необходимый для построения
      * @param locatorsType тип локатора
-     * **/
+     */
     public By locatorBuild(String textLocator, LocatorsType locatorsType) {
         By locator = null;
         switch (locatorsType) {
@@ -275,7 +280,7 @@ public class BasePage {
 
     /**
      * Метод вызывающий AssertionError
-     * **/
+     */
     public void failure() {
         throw new AssertionError();
     }
@@ -283,7 +288,7 @@ public class BasePage {
     /**
      * Получить имя страницы
      * @return имя текущей страницы
-     * **/
+     */
     public String getPageName(){
         return getText(NAME_PAGE);
     }
@@ -291,7 +296,7 @@ public class BasePage {
     /**
      * Нажать на кнопку
      * @param buttonName название кнопки
-     * **/
+     */
     public void buttonClick(String buttonName){
         click(By.xpath(String.format(BUTTON_XPATH,buttonName)));
     }
@@ -301,7 +306,7 @@ public class BasePage {
      * @param locator путь до элемента, тип - By
      * @param attribute название атрибута
      * @return значение найденного атрибута
-     * **/
+     */
     public String getAttributeValue(By locator, String attribute){
         return findElement(locator).getCssValue(attribute);
     }
@@ -312,7 +317,7 @@ public class BasePage {
      * @param driver - инстанс драйвера, который управляет браузером
      * @param timeoutInSeconds - количество секунд
      * @throws org.openqa.selenium.TimeoutException - если условие не выполнено
-     * **/
+     */
     public void waitForPageLoad(WebDriver driver, int timeoutInSeconds) {
         WebDriverWait wait = new WebDriverWait(driver,
                 Duration.ofSeconds(timeoutInSeconds));
@@ -327,7 +332,7 @@ public class BasePage {
     /**
      * Ожидание в секундах (через sleep)
      * @param seconds - количество секунд
-     * **/
+     */
     public void waitForSeconds(int seconds) {
         try {
             Thread.sleep(seconds * 1000L);

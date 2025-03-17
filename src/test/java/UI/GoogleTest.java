@@ -8,7 +8,7 @@ import pages.google.GooglePage;
 
 /**
  * Тест на страницу поиска "Google"
- * **/
+*/
 public class GoogleTest extends BaseTest {
     private GooglePage googlePage;
 

@@ -12,7 +12,7 @@ import static pages.elements.DynamicPropertiesPage.BTN_ENABLE_AFTER;
 
 /**
  * Тест на "Dynamic Properties"
- * **/
+*/
 public class DynamicPropertiesTest extends BaseTest {
 
     private DynamicPropertiesPage dynamicPropertiesPage;

@@ -13,7 +13,7 @@ import pages.elements.TextBoxPage;
 
 /**
  * Тест на "Text Box"
- * **/
+*/
 public class TextBox extends BaseTest {
     private MainPage mainPage;
     private TextBoxPage textBoxPage;

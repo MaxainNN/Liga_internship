@@ -10,7 +10,7 @@ import static pages.elements.ButtonsPage.*;
 
 /**
  * Тест на "Buttons"
- * **/
+*/
 public class ButtonTest extends BaseTest {
     private ButtonsPage buttonsPage;
 

@@ -8,7 +8,7 @@ import pages.elements.DynamicPropertiesPage;
 
 /**
  * Тест на "Select Menu"
- * **/
+*/
 public class SelectMenuTest extends BaseTest {
     private DynamicPropertiesPage dynamicPropertiesPage;
 

@@ -2,7 +2,7 @@ package constant;
 
 /**
  * Enum CategoryCards представляет собой  категории карточек, которые отображаются на главной странице.
- * **/
+*/
 public enum CategoryCards {
     ELEMENTS ("Elements"),
     FORMS ("Forms"),
@@ -12,6 +12,8 @@ public enum CategoryCards {
     INTERACTIONS ("Interactions"),
     BOOK_STORE_APPLICATION("Book Store Application");
 
+    private String name;
+
     private CategoryCards(String name){
         this.name = name;
     }
@@ -19,5 +21,5 @@ public enum CategoryCards {
     public String getName() {
         return name;
     }
-    private String name;
+
 }

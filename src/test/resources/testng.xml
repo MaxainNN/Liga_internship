@@ -28,9 +28,9 @@
 <!--            <class name="UI.GoogleTest"/>-->
 <!--        </classes>-->
 <!--    </test>-->
-<!--    <test name="SeleniumTests">-->
+<!--    <test name="SauceDemoTests">-->
 <!--        <classes>-->
-<!--            <class name="UI.SeleniumPageTest"/>-->
+<!--            <class name="UI.SauceDemoTest"/>-->
 <!--        </classes>-->
 <!--    </test>-->
 

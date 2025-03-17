@@ -11,7 +11,7 @@ import java.time.Duration;
 
 /**
  * Тест на "Broken Links - Images"
- * **/
+*/
 public class BrokenLinksTest extends BaseTest {
     private BrokenLinks brokenLinks;
 

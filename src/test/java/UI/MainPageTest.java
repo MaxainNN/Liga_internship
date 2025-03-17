@@ -12,7 +12,7 @@ import pages.elements.CheckBoxPage;
 
 /**
  * Тест для главной страницы
- * **/
+*/
 public class MainPageTest extends BaseTest {
     private MainPage mainPage;
     private SecondPage secondPage;

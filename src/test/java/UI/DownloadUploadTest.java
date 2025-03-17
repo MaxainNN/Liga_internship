@@ -16,7 +16,7 @@ import static browser.Path.*;
 
 /**
  * Тест на "Upload and Download"
- * **/
+*/
 public class DownloadUploadTest extends BaseTest {
 
     private DownloadPage downloadPage;
@@ -30,7 +30,7 @@ public class DownloadUploadTest extends BaseTest {
     public void afterTest(){
         /**
          * После выполения теста папка с загрузками очищается
-         * **/
+         */
         Path path = Paths.get(DOWNLOAD_DIR + "sampleFile.jpeg");
         try {
             Files.delete(path);

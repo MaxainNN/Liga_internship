@@ -2,7 +2,7 @@ package constant;
 
 /**
  * Enum Item содержит все элементы из выпадающих списков , с которыми можно взаимодействовать.
- * **/
+*/
 public enum Item {
     TEXT_BOX ("Text Box"),
     CHECK_BOX ("Check Box"),
@@ -37,10 +37,13 @@ public enum Item {
     BOOK_STORE ("Book Store"),
     PROFILE ("Profile"),
     BOOK_STORE_API("Book Store API");
+
+    String itemName;
+
     private Item(String itemName){
         this.itemName = itemName;
     }
-    String itemName;
+
     public String getName() {
         return itemName;
     }

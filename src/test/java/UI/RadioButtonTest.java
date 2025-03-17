@@ -9,7 +9,7 @@ import pages.elements.RadioButtonPage;
 
 /**
  * Тест на "Radio Button"
- * **/
+*/
 public class RadioButtonTest extends BaseTest {
     private LeftPanel leftPanel;
     private RadioButtonPage radioButtonPage;

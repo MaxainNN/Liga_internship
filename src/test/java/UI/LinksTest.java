@@ -8,7 +8,7 @@ import pages.elements.LinksPage;
 
 /**
  * Тест на "Links"
- * **/
+*/
 public class LinksTest extends BaseTest {
     private LinksPage linksPage;
 
