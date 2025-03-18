@@ -39,7 +39,7 @@ public class LoginPage extends BasePage {
 
     /**
      * Авторизоваться с логином "standard_user"
-     **/
+     */
     public void authorize(){
         openLoginPage();
 
