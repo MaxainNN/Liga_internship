@@ -136,15 +136,12 @@ mvn clean test
 
 # Полезные ссылки:
 - https://demoqa.com/ - сайт для тренировки написания UI тестов с различными формами (Используется в проекте)
-- https://www.saucedemo.com/ - сайт для тренировки UI тестов в виде магазина (Используется в проекте (пока нет))
-- https://testengineer.ru/selenium-webdriver-java-cheat-sheet/ - Примеры использования методов Selenium
-- http://85.192.34.140:8081/ - Тренажер для UI тестов (аналог DemoQA)
+- https://www.saucedemo.com/ - сайт для тренировки UI тестов в виде магазина (Используется в проекте)
 - https://googlechromelabs.github.io/chrome-for-testing/ - страница для скачивания драйверов для Chrome
 - https://geckodriver.org/ - страница для скачивания Geckodriver (Firefox)
 - https://mvnrepository.com/ - Репозиторий с зависимостями
 - https://maven.apache.org/download.cgi - Загрузка Maven
 - https://www.oracle.com/java/technologies/downloads/ - Загрузка jdk
-- https://habr.com/ru/companies/intec_balance/articles/884482/ - статья про использование Devtools
 
 # Список литературы:
 - Фулстэк тестирование (Гаятри Мохан) главы 1-3
@@ -182,7 +179,8 @@ mvn clean test
 7) В `CI` файле вынести нестабильные тесты в отдельную группу в `testng.xml`
 8) Рефакторинг отчета `ExtentReport`
 9) Пофиксить `Google` тест
-10) Обновить README.md +/-
+10) Обновить README.md , проверить отступы, стили +/-
+11) Описанить все дополнительные материалы
 
 **Автор:** Калугин М.С. <a href="https://github.com/MaxainNN" target="_blank"><img src="images/github_icon.png" alt="Github" width="30" height="30"></a>
 <a href="mailto:imenolys23@gmail.com"><img src="images/google_mail_icon.png" alt="Написать письмо" width="40" height="30"></a>
