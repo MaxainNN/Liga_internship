@@ -1,5 +1,7 @@
 # Java
 
+<img src='../images/java_big_icon.svg' alt='Java_title' width='100' height='100'>
+
 ### Введение
 
 Java является основой практически для всех типов сетевых приложений и 
