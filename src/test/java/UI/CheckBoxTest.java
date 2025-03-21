@@ -5,7 +5,7 @@ import constant.Item;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import pages.elements.CheckBoxPage;
+import pages.demoqa.elements.CheckBoxPage;
 
 /**
  * Тест на "Check Box"

@@ -1,5 +1,7 @@
 # Selenium
 
+<img src='../images/selenium_long_title.jpg' alt='Test_pyramid' width='400' height='200'>
+
 From load_test_template project
 
 

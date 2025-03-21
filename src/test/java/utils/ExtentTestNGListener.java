@@ -1,6 +1,7 @@
 package utils;
 
 import base.BaseTest;
+import browser.Browser;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.MediaEntityBuilder;
@@ -27,7 +28,7 @@ import static browser.Path.SCREENSHOT_DIR;
  */
 public class ExtentTestNGListener implements ITestListener {
 
-    private ExtentReports extent = new ExtentReports();
+    private static ExtentReports extent = new ExtentReports();
     private ExtentTest test;
 
     public ExtentTestNGListener() {
@@ -35,9 +36,23 @@ public class ExtentTestNGListener implements ITestListener {
         spark.config().setDocumentTitle("Automation Report");
         spark.config().setTheme(Theme.DARK);
         extent.attachReporter(spark);
-        extent.setSystemInfo("OS","Windows");
-        extent.setSystemInfo("Browser Type","Chrome");
-        extent.setSystemInfo("Browser Version","133.0.6943.141");
+    }
+
+    /**
+     * Метод для получения информации о браузере
+     * @param driver экземпляр драйвера
+     * */
+    public static void setSystemInfo(WebDriver driver) {
+        if (driver != null) {
+            extent.setSystemInfo("OS", Browser.getPlatformType(driver));
+            extent.setSystemInfo("Browser Type", Browser.getBrowserName(driver));
+            extent.setSystemInfo("Browser Version", Browser.getBrowserVersion(driver));
+        }
+    }
+
+    @Override
+    public void onStart(ITestContext context){
+        System.out.println("OnStart method");
     }
 
     @Override
@@ -75,7 +90,7 @@ public class ExtentTestNGListener implements ITestListener {
 
         Throwable throwable = result.getThrowable();
         if (throwable != null) {
-            test.fail("<pre>" + throwable.toString() + "</pre>");
+            test.fail("<pre>" + throwable + "</pre>");
 
             for (StackTraceElement element : throwable.getStackTrace()) {
                 test.fail("<pre>" + element.toString() + "</pre>");

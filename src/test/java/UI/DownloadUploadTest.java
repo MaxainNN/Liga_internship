@@ -5,7 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import pages.elements.DownloadPage;
+import pages.demoqa.elements.DownloadPage;
 
 import java.io.IOException;
 import java.nio.file.Files;

@@ -5,10 +5,10 @@ import constant.Item;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import pages.elements.DynamicPropertiesPage;
+import pages.demoqa.elements.DynamicPropertiesPage;
 
-import static pages.elements.DynamicPropertiesPage.*;
-import static pages.elements.DynamicPropertiesPage.BTN_ENABLE_AFTER;
+import static pages.demoqa.elements.DynamicPropertiesPage.*;
+import static pages.demoqa.elements.DynamicPropertiesPage.BTN_ENABLE_AFTER;
 
 /**
  * Тест на "Dynamic Properties"

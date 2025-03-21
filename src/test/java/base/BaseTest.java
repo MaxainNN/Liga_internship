@@ -3,11 +3,12 @@ package base;
 import browser.Browser;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
+import utils.ExtentTestNGListener;
 
 
 /**
 * Базовый класс теста.
-* **/
+*/
 public abstract class BaseTest {
 
     public WebDriver driver;
@@ -18,12 +19,13 @@ public abstract class BaseTest {
     @BeforeSuite
     public void setUpSuite(){
         System.out.println("Setting up before test suite.");
+//        driver = Browser.createDriver();
+//        ExtentTestNGListener.setSystemInfo(driver);
     }
 
     /**
      * Перед запуском всех тестовых методов будут выполнены действия
      * внутри тэга <test></test> в testng.mxl
-     * Перед тестом будет создан экземпляр драйвера
      */
     @BeforeTest
     public void setUpTest(){
@@ -38,6 +40,7 @@ public abstract class BaseTest {
     public void setUpClass(){
         System.out.println("Setting up before class.");
         driver = Browser.createDriver();
+        ExtentTestNGListener.setSystemInfo(driver);
     }
 
     /**
@@ -71,7 +74,6 @@ public abstract class BaseTest {
     /**
      * После всех тестовых методов в классе будут выполнены действия
      * внутри тэга <test></test> в testng.mxl
-     * После теста браузер будет закрыт
      */
     @AfterTest
     public void tearDownTest(){
@@ -84,6 +86,9 @@ public abstract class BaseTest {
     @AfterSuite
     public void tearDownSuite(){
         System.out.println("Tearing down after test suite.");
+//        if (driver != null) {
+//            driver.quit();
+//        }
     }
 
 }

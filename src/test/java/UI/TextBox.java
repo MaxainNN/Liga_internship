@@ -6,10 +6,10 @@ import constant.Item;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import pages.main.MainPage;
-import pages.secondPage.LeftPanel;
-import pages.secondPage.SecondPage;
-import pages.elements.TextBoxPage;
+import pages.demoqa.main.MainPage;
+import pages.demoqa.secondPage.LeftPanel;
+import pages.demoqa.secondPage.SecondPage;
+import pages.demoqa.elements.TextBoxPage;
 
 /**
  * Тест на "Text Box"

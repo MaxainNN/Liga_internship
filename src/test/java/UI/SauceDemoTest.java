@@ -4,7 +4,9 @@ import base.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-/** Тест на "SauceDemo"*/
+/**
+ * Тест на "SauceDemo"
+ */
 public class SauceDemoTest extends BaseTest {
 
     @Test

@@ -4,8 +4,8 @@ import base.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import pages.secondPage.LeftPanel;
-import pages.elements.RadioButtonPage;
+import pages.demoqa.secondPage.LeftPanel;
+import pages.demoqa.elements.RadioButtonPage;
 
 /**
  * Тест на "Radio Button"

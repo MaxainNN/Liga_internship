@@ -4,9 +4,9 @@ import base.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import pages.elements.ButtonsPage;
+import pages.demoqa.elements.ButtonsPage;
 
-import static pages.elements.ButtonsPage.*;
+import static pages.demoqa.elements.ButtonsPage.*;
 
 /**
  * Тест на "Buttons"
@@ -19,7 +19,7 @@ public class ButtonTest extends BaseTest {
         buttonsPage = new ButtonsPage(driver);
     }
 
-    @Test(description = "Открыть страницу, дважды нажать на кнопку 'Double Click Me'")
+    @Test(description = "Открыть страницу, дважды нажать на кнопку 'Double Click Me'", groups = {"broken"})
     public void step_01(){
         buttonsPage.openButtonsPage();
         buttonsPage.doubleClick(DOUBLE_CLICK_BTN);

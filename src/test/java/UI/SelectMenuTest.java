@@ -4,7 +4,7 @@ import base.BaseTest;
 import org.openqa.selenium.By;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import pages.elements.DynamicPropertiesPage;
+import pages.demoqa.elements.DynamicPropertiesPage;
 
 /**
  * Тест на "Select Menu"

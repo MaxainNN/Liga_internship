@@ -1,5 +1,6 @@
 package browser;
 
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -8,6 +9,7 @@ import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.CapabilityType;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.time.Duration;
 import java.util.HashMap;
@@ -26,6 +28,7 @@ import static browser.Path.DOWNLOAD_DIR;
 public class Browser {
 
     public static WebDriver driver;
+
     /**
      * Инициализируется драйвер (необходимо для работы драйвера, иначе ошибка)
      * Устанавливает разрешение экрана на максимальное и настраивает неявное ожидание.
@@ -134,5 +137,35 @@ public class Browser {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(WAIT));
 
         return driver;
+    }
+
+    /**
+     * Получить название браузера
+     * @param driver созданный драйвер
+     * @return название браузера
+     */
+    public static String getBrowserName(WebDriver driver) {
+        Capabilities caps = ((RemoteWebDriver) driver).getCapabilities();
+        return caps.getBrowserName();
+    }
+
+    /**
+     * Получить версию браузера
+     * @param driver созданный драйвер
+     * @return версию браузера
+     */
+    public static String getBrowserVersion(WebDriver driver) {
+        Capabilities caps = ((RemoteWebDriver) driver).getCapabilities();
+        return caps.getBrowserVersion();
+    }
+
+    /**
+     * Получить ОС (платформу) браузера
+     * @param driver созданный драйвер
+     * @return ОС , на которой запущен драйвер
+     */
+    public static String getPlatformType(WebDriver driver){
+        Capabilities caps = ((RemoteWebDriver) driver).getCapabilities();
+        return String.valueOf(caps.getPlatformName());
     }
 }
