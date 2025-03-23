@@ -1,7 +1,11 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<!-- Для настройки многопоточности раскомментировать строчку -->
+<!-- Для параллельного запуска тестов раскомментировать строчку -->
 <!-- текущий suite закомментировать -->
-<!--<suite name="Suite" verbose="1" parallel="tests" thread-count="3">-->
+<!-- Справка: parallel="tests": каждый <test> в testng.xml будет выполняться в отдельном потоке.
+     Если добавить ещё несколько <test> блоков, они будут выполняться одновременно.
+     thread-count="3": это количество потоков, которые TestNG использует для выполнения тестов.
+     Это означает, что TestNG может запустить 3 потока одновременно. -->
+<!--<suite name="Suite" verbose="1" parallel="tests" thread-count="3"> -->
 <suite name="Suite" verbose="1" parallel="none" thread-count="1">
     <test name="DemoQATests">
         <groups>

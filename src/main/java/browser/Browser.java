@@ -3,6 +3,7 @@ package browser;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
@@ -43,6 +44,16 @@ public class Browser {
         switch (BROWSER_TYPE){
             case "chrome":
                 System.setProperty("webdriver.chrome.driver", DRIVERS_PATH + "chromedriver.exe");
+
+                // Создаём сервис с выводом логов в консоль
+                ChromeDriverService service = new ChromeDriverService.Builder()
+                        .withLogOutput(System.out)
+                        .withAppendLog(true)
+                        .withReadableTimestamp(true)
+                        // Очень подробные логи
+                        //.withVerbose(true)
+                        .build();
+
                 ChromeOptions chromeOptions = new ChromeOptions();
                 /**
                  * Настройка отвечающая за директорию, в которую будут загружаться файлы
@@ -73,14 +84,16 @@ public class Browser {
                  */
                 chromeOptions.addArguments("--disable-infobars");
                 /**
-                 * Отключаем уведомления
+                 * Отключаем уведомления (о cookie и т.д.)
                  */
                 chromeOptions.addArguments("--disable-notifications");
+
+                chromeOptions.addArguments("--disable-popup-blocking");
                 /**
                  * Настройка отвечающая за выполнение тестов в "headless" режиме
                  * (Выполнение теста не показывается на экране)
                  */
-                chromeOptions.addArguments("--headless");
+//                chromeOptions.addArguments("--headless");
                 /**
                  * Отключаем GPU (рекомендуется для headless-режима)
                  */
@@ -111,7 +124,7 @@ public class Browser {
                  * могут еще загружаться
                  */
                 chromeOptions.setCapability(CapabilityType.PAGE_LOAD_STRATEGY, "eager");
-                driver = new ChromeDriver(chromeOptions);
+                driver = new ChromeDriver(service, chromeOptions);
                 break;
             case "edge":
                 System.setProperty("webdriver.edge.driver", DRIVERS_PATH + "msedgedriver.exe");

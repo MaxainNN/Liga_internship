@@ -8,35 +8,44 @@ import pages.base.BasePage;
  * Класс для "Check Box" элементов
  * **/
 public class CheckBoxPage extends BasePage {
+
     public CheckBoxPage(WebDriver driver) {
         super(driver);
     }
 
     /**
      * Локатор до страницы с "Check Box" элементами
-     * **/
+     */
     public static final String URL_TEXT_BOX_PAGE = "https://demoqa.com/checkbox";
+
     /**
      * Локатор до кнопки "Свернуть/развернуть"
-     * **/
+     */
     public static final String BUTTON_TOGGLE = CHECK_BOX_INPUT_XPATH + "/../preceding-sibling::button[@title='Toggle']";
+
     /**
      * Локатор для проверки , что строки свернуты/развернуты
-     * **/
+     */
     public static final String LIST_CHECKBOX_XPATH = CHECK_BOX_INPUT_XPATH + "/ancestor::li[contains(@class,'%s')]";
+
     /**
      * Строки развернуты
-     * **/
+     */
     public static final String LIST_CHECKBOX_OPEN = "expanded";
+
     /**
      * Строки свернуты
-     * **/
+     */
     public static final String LIST_CHECKBOX_CLOSED = "collapsed";
 
+    /**
+     * Локатор до элементов с текстом после отмечания "Home"
+     */
+    public static final String SELECTED_ITEMS_HOME = "//div[@id='result']/span[@class='text-success']";
 
     /**
      * Открыть страницу с элементами "Check Box"
-     * **/
+     */
     public void openCheckBoxPage(){
         openUrl(URL_TEXT_BOX_PAGE);
     }
@@ -90,8 +99,17 @@ public class CheckBoxPage extends BasePage {
      * Проверка , что не отображаются внутренние чекбоксы
      * @param checkBoxName название чек-бокса
      * @return true если не отображается
-     * **/
+     */
     public boolean isListCheckBoxClosed(String checkBoxName){
         return isElementDisplay(By.xpath(String.format(LIST_CHECKBOX_XPATH,checkBoxName,LIST_CHECKBOX_CLOSED)));
+    }
+
+    /**
+     * Проверка - чекбокс "Home" в "Check Box"
+     * категории отмечен
+     * @return true если отображаются строки после нажатия
+     */
+    public boolean isMessageDisplayed(){
+        return isElementsDisplay(By.xpath(SELECTED_ITEMS_HOME));
     }
 }

@@ -29,23 +29,26 @@ public class BasePage {
     /**
      * Локатор до картинки в шапке (header'е) страницы
      */
-    public static final By HEADER_XPATH = By.xpath("//header/a[@href='https://demoqa.com'][img[@src='/images/Toolsqa.jpg']]");
+    private static final By HEADER_XPATH = By.xpath("//header/a" +
+            "[@href='https://demoqa.com'][img[@src='/images/Toolsqa.jpg']]");
 
     /**
      * Локаторы для взаимодействия с чек-боксами на странице "Check Box"
      */
-    public static final String CHECK_BOX_INPUT_XPATH = "//input[@type='checkbox'][following-sibling::span[text()='%s']]";
-    public static final String CHECK_BOX_XPATH = CHECK_BOX_INPUT_XPATH + "/following-sibling::span[@class='rct-checkbox']";
+    protected static final String CHECK_BOX_INPUT_XPATH = "//input" +
+            "[@type='checkbox'][following-sibling::span[text()='%s']]";
+    protected static final String CHECK_BOX_XPATH = CHECK_BOX_INPUT_XPATH +
+             "/following-sibling::span[@class='rct-checkbox']";
 
     /**
      * Локатор до названия страницы в средней части страницы
      */
-    public static final By NAME_PAGE = By.xpath("//h1[@class='text-center']");
+    private static final By NAME_PAGE = By.xpath("//h1[@class='text-center']");
 
     /**
      * Локатор для взаимодействия с кнопками
      */
-    public static final String BUTTON_XPATH = "//*[@type='button' and text()='%s']";
+    private static final String BUTTON_XPATH = "//*[@type='button' and text()='%s']";
 
     /**
      * Перейти по url
@@ -82,7 +85,8 @@ public class BasePage {
      * @param second время ожидания в секундах
      */
     public void waitElementIsVisible(By locator, int second) {
-        new WebDriverWait(driver, Duration.ofSeconds(second)).until(ExpectedConditions.visibilityOf(findElement(locator)));
+        new WebDriverWait(driver, Duration.ofSeconds(second))
+                .until(ExpectedConditions.visibilityOf(findElement(locator)));
     }
 
     /**
@@ -186,6 +190,26 @@ public class BasePage {
     }
 
     /**
+     * Проверка - Элементы отображается
+     * @param locator путь до элементов, тип - By
+     * @return true если все элементы отображаются
+     * */
+    public boolean isElementsDisplay(By locator) {
+        try {
+            List<WebElement> elements = findElements(locator);
+
+            for (WebElement element : elements) {
+                if (!element.isDisplayed()) {
+                    return false;
+                }
+            }
+            return true;
+        } catch (Exception ex){
+            return false;
+        }
+    }
+
+    /**
      * Проверка элемент доступен
      * @return true если доступен
      */
@@ -218,13 +242,13 @@ public class BasePage {
     public boolean getCheckBoxState(String checkBoxName){
         return findElement(By.xpath(String.format(CHECK_BOX_INPUT_XPATH,checkBoxName))).isSelected();
     }
+
     /**
      * Переводит чек-бокс в нужное состочние
      * @param checkBoxName - Название чек-бокса
      * @param state - нужное состочние, true если чек-бокс должен быть активным, false - если нет
      */
     public void setCheckBox(String checkBoxName, boolean state){
-        //String locator = String.format(CHECK_BOX_XPATH, checkBoxName) + "/following-sibling::span[@class='rct-checkbox']";
         if (!getCheckBoxState(checkBoxName) == state){
             click(By.xpath(String.format(CHECK_BOX_XPATH,checkBoxName)));
         }

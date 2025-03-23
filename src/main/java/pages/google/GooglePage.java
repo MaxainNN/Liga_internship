@@ -19,29 +19,40 @@ public class GooglePage extends BasePage {
     /**
      * Url для главной страницы "Google"
      */
-    public static final String GOOGLE_URL = "https://www.google.ru/";
+     private static final String GOOGLE_URL = "https://www.google.ru/";
 
     /**
      * Локатор до строки поиска на главной странице
      * Может быть - "Search"
      */
-    public static final String SEARCH_TEXT_AREA = "//textarea[@title='Поиск']";
+    private static final String SEARCH_TEXT_AREA = "//textarea[@title='Поиск']";
 
     /**
      * Локатор до кнопки "Google Search"
      * Может быть - "Google Search"
      */
-    public static final String SEARCH_BUTTON = "(//input[@value='Поиск в Google'])[2]";
+    private static final String SEARCH_BUTTON = "(//input[@value='Поиск в Google'])[2]";
 
     /**
      * Локатор ло кнопки "Replay animation" в нижней части страницы
      */
-    public static final String REPLAY_ANIMATION_BUTTON = "(//g-ripple)[1]";
+    private static final String REPLAY_ANIMATION_BUTTON = "(//g-ripple)[1]";
 
     /**
      * Локатор до элемента , которому после начала анимации добавляется аттрибут
      */
-    public static final String INNER_ANIMATION_ELEMENT = "(//div[@jsname='AHe6Kc'])[1]";
+    private static final String INNER_ANIMATION_ELEMENT = "(//div[@jsname='AHe6Kc'])[1]";
+
+    /**
+     * Локатор до до кнопки "Принять все" в уведомлении о cookie
+     */
+    private static final String ACCEPT_COOKIE_BUTTON = "//div[text()='Принять все']";
+
+    /**
+     * Локатор до текста с reCAPTCHA
+     * */
+    private static final String RECAPTCHA_TEXT = "(//div[contains(string(), " +
+            "'подозрительный трафик')])[2]";
 
     /**
      * Открыть главную страницу "Google"
@@ -51,14 +62,25 @@ public class GooglePage extends BasePage {
     }
 
     /**
+     * Нажать на кнопку "Принять все"
+     * в уведомлении о cookie
+     * **/
+    public void acceptCookie(){
+        waitElementIsDisplay(By.xpath(ACCEPT_COOKIE_BUTTON),3);
+        click(By.xpath(ACCEPT_COOKIE_BUTTON));
+    }
+
+    /**
      * Внести значение в поисковую строку и нажать на кнопку "Google Search"
      * @param value значение , которое передается в поисковую строку
      */
     public void search(String value){
-        waitForSeconds(2);
+        waitElementIsVisible(By.xpath(SEARCH_TEXT_AREA));
+        waitElementIsDisplay(By.xpath(SEARCH_TEXT_AREA), 2);
         sendKeys(By.xpath(SEARCH_TEXT_AREA), value);
         clickEmptyArea();
-        waitForSeconds(2);
+        waitElementIsVisible(By.xpath(SEARCH_BUTTON));
+        waitElementIsDisplay(By.xpath(SEARCH_BUTTON), 2);
         click(By.xpath(SEARCH_BUTTON));
     }
 
@@ -74,6 +96,7 @@ public class GooglePage extends BasePage {
      */
     public void clickAnimationButton(){
         waitElementIsVisible(By.xpath(REPLAY_ANIMATION_BUTTON));
+        waitElementIsDisplay(By.xpath(REPLAY_ANIMATION_BUTTON),2);
         click(By.xpath(REPLAY_ANIMATION_BUTTON));
     }
 
@@ -83,7 +106,22 @@ public class GooglePage extends BasePage {
      * @return true если у элемента появляется такой аттрибут со значением
      */
     public boolean isAttributeAdded(){
-        return getAttributeValue(By.xpath(INNER_ANIMATION_ELEMENT),"style").contains("opacity");
+        try {
+            waitForSeconds(2);
+            waitElementIsDisplay(By.xpath(INNER_ANIMATION_ELEMENT), 3);
+            return getAttributeValue(By.xpath(INNER_ANIMATION_ELEMENT),"style").contains("opacity");
+        } catch (Exception ex) {
+            return false;
+        }
+    }
+
+    /**
+     * Отображается сообщение с reCAPTCHA
+     * @return true если отображается
+     * сообщение о подозрительном трафике
+     */
+    public boolean isCaptchaAppeared(){
+        return isElementsDisplay(By.xpath(RECAPTCHA_TEXT));
     }
 
 }

@@ -45,6 +45,6 @@ public class MainPageTest extends BaseTest {
         checkBoxPage = leftPanel.openCheckBoxPage();
         checkBoxPage.getCheckBoxState("Home");
         checkBoxPage.setCheckBox("Home",true);
-        // Asserts
+        Assert.assertTrue(checkBoxPage.isMessageDisplayed());
     }
 }

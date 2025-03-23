@@ -19,8 +19,6 @@ public abstract class BaseTest {
     @BeforeSuite
     public void setUpSuite(){
         System.out.println("Setting up before test suite.");
-//        driver = Browser.createDriver();
-//        ExtentTestNGListener.setSystemInfo(driver);
     }
 
     /**
@@ -86,9 +84,6 @@ public abstract class BaseTest {
     @AfterSuite
     public void tearDownSuite(){
         System.out.println("Tearing down after test suite.");
-//        if (driver != null) {
-//            driver.quit();
-//        }
     }
 
 }

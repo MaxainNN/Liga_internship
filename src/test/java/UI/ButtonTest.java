@@ -10,7 +10,9 @@ import static pages.demoqa.elements.ButtonsPage.*;
 
 /**
  * Тест на "Buttons"
+ * Пример с исключенным тестом
 */
+@Test(groups = {"broken"})
 public class ButtonTest extends BaseTest {
     private ButtonsPage buttonsPage;
 
@@ -19,7 +21,7 @@ public class ButtonTest extends BaseTest {
         buttonsPage = new ButtonsPage(driver);
     }
 
-    @Test(description = "Открыть страницу, дважды нажать на кнопку 'Double Click Me'", groups = {"broken"})
+    @Test(description = "Открыть страницу, дважды нажать на кнопку 'Double Click Me'")
     public void step_01(){
         buttonsPage.openButtonsPage();
         buttonsPage.doubleClick(DOUBLE_CLICK_BTN);

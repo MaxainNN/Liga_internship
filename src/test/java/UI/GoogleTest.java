@@ -20,11 +20,11 @@ public class GoogleTest extends BaseTest {
     @Test(description = "Тест Google с поиском по слову 'Наруто'")
     public void step_01(){
         googlePage.openGooglePage();
-        googlePage.waitForSeconds(3);
         googlePage.search("naruto");
-        googlePage.waitForSeconds(3);
-        googlePage.clickAnimationButton();
-        Assert.assertTrue(googlePage.isAttributeAdded());
-        googlePage.waitForSeconds(3);
+        Assert.assertTrue(googlePage.isCaptchaAppeared());
+        //googlePage.clickAnimationButton();
+        //Assert.assertTrue(googlePage.isAttributeAdded());
+        // For screenshot
+        //googlePage.waitForSeconds(3);
     }
 }

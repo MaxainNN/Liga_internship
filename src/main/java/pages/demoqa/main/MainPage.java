@@ -41,7 +41,7 @@ public class MainPage extends BasePage {
     /**
      * Открыть категорию
      * @param nameCards - название категории
-     * @return
+     * @return страницу с открытой категорией
      */
     public SecondPage openCategoryCards(CategoryCards nameCards){
         By locator = By.xpath(String.format(CATEGORY_CARD_XPATH,nameCards.getName()));

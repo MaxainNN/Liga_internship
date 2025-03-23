@@ -30,6 +30,7 @@ public class ExtentTestNGListener implements ITestListener {
 
     private static ExtentReports extent = new ExtentReports();
     private ExtentTest test;
+    private static boolean systemInfoSet = false;
 
     public ExtentTestNGListener() {
         ExtentSparkReporter spark = new ExtentSparkReporter("target/TestsReport.html");
@@ -41,12 +42,13 @@ public class ExtentTestNGListener implements ITestListener {
     /**
      * Метод для получения информации о браузере
      * @param driver экземпляр драйвера
-     * */
+     */
     public static void setSystemInfo(WebDriver driver) {
-        if (driver != null) {
+        if (!systemInfoSet && driver != null) {
             extent.setSystemInfo("OS", Browser.getPlatformType(driver));
             extent.setSystemInfo("Browser Type", Browser.getBrowserName(driver));
             extent.setSystemInfo("Browser Version", Browser.getBrowserVersion(driver));
+            systemInfoSet = true;
         }
     }
 
