@@ -75,6 +75,7 @@
 │       └── resources  # Ресурсы для тестов
 │           ├── downloadFiles # Загруженные файлы после тестов        
 │           ├── testFiles # Тестовые файлы для загрузки
+│           ├── googleProfile # Кэш с данными профиля Google 
 │           └── testng.xml # Конфигурация TestNG
 └── run_tests.bat # Скрипт для запуска тестов и просмотра отчета (для Windows)
 ```
@@ -84,7 +85,7 @@
 - Проект написан в соответствии с паттерном проектирования `Page Object Model`
 - Проект написан в соответстии с практиками и рекомендациями `Code Policy` принятыми в компании для `Java`
 - Не учитывается использование `WebDriverManager`, выбора типа операционной системы.
-- Не используется логирование
+- Не используется логирование с помошью библиотек `sl4j` и `log4j2`
 - Тесты выполняются последовательно в одном потоке , для настройки многопоточности использовать `testng.xml`
 - В качестве браузера по умолчанию выбран - <img src="images/chrome_icon.png" alt="Chrome" width="25" height="25"> [Chrome](https://googlechromelabs.github.io/chrome-for-testing/) версии 134.0.6998.90 (актуальной на момент создания проекта). Для запуска возможно потребуется актуализация.
 - Также есть возможность запуска тестов в <img src="images/firefox_icon.png" alt="Firefox" width="25" height="25"> [Firefox](https://github.com/mozilla/geckodriver/releases) (версии 136.0.2) и <img src="images/egde_icon.png" alt="Edge" width="25" height="25"> [Edge](https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver?form=MA13LH) (версии 133.0.3065.92) браузерах. Для настройки использовать класс `Config`

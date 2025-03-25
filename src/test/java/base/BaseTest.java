@@ -18,7 +18,7 @@ public abstract class BaseTest {
      */
     @BeforeSuite
     public void setUpSuite(){
-        System.out.println("Setting up before test suite.");
+        System.out.println("[INFO] Setting up before test suite.");
     }
 
     /**
@@ -27,7 +27,7 @@ public abstract class BaseTest {
      */
     @BeforeTest
     public void setUpTest(){
-        System.out.println("Setting up before test.");
+        System.out.println("[INFO] Setting up before test.");
     }
 
     /**
@@ -36,7 +36,7 @@ public abstract class BaseTest {
      */
     @BeforeClass
     public void setUpClass(){
-        System.out.println("Setting up before class.");
+        System.out.println("[INFO] Setting up before class.");
         driver = Browser.createDriver();
         ExtentTestNGListener.setSystemInfo(driver);
     }
@@ -46,7 +46,7 @@ public abstract class BaseTest {
      */
     @BeforeMethod
     public void setUpMethod(){
-        System.out.println("Setting up before each test method");
+        System.out.println("[INFO] Setting up before each test method");
     }
 
     /**
@@ -54,7 +54,7 @@ public abstract class BaseTest {
      */
     @AfterMethod
     public void tearDownMethod(){
-        System.out.println("Tearing down after each test method");
+        System.out.println("[INFO] Tearing down after each test method");
     }
 
     /**
@@ -63,7 +63,7 @@ public abstract class BaseTest {
      */
     @AfterClass
     public void tearDownClass(){
-        System.out.println("Tearing down after all test's methods in class.");
+        System.out.println("[INFO] Tearing down after all test's methods in class.");
         if (driver != null) {
             driver.quit();
         }
@@ -75,7 +75,7 @@ public abstract class BaseTest {
      */
     @AfterTest
     public void tearDownTest(){
-        System.out.println("Tearing down after all test's methods.");
+        System.out.println("[INFO] Tearing down after all test's methods.");
     }
 
     /**
@@ -83,7 +83,7 @@ public abstract class BaseTest {
      */
     @AfterSuite
     public void tearDownSuite(){
-        System.out.println("Tearing down after test suite.");
+        System.out.println("[INFO] Tearing down after test suite.");
     }
 
 }

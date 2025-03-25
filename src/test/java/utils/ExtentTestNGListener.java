@@ -69,6 +69,7 @@ public class ExtentTestNGListener implements ITestListener {
     @Override
     public void onTestSuccess(ITestResult result) {
         test.log(Status.PASS, "Test passed");
+        printCompletionMessage(result, "Passed");
 
         WebDriver driver = ((BaseTest) result.getInstance()).driver;
 
@@ -89,6 +90,7 @@ public class ExtentTestNGListener implements ITestListener {
     @Override
     public void onTestFailure(ITestResult result) {
         test.log(Status.FAIL, "Test failed");
+        printCompletionMessage(result, "Failed");
 
         Throwable throwable = result.getThrowable();
         if (throwable != null) {
@@ -113,6 +115,11 @@ public class ExtentTestNGListener implements ITestListener {
             }
         }
 
+    }
+
+    @Override
+    public void onTestSkipped(ITestResult result) {
+        printCompletionMessage(result, "Skipped");
     }
 
     @Override
@@ -147,5 +154,16 @@ public class ExtentTestNGListener implements ITestListener {
             }
         }
         return null;
+    }
+
+    /**
+     * Сообщение о завершении теста
+     * @param result - инстанс ITestResult
+     * @param status - статус теста (success/fail/skip)
+     */
+    private void printCompletionMessage(ITestResult result, String status) {
+        String testClass = result.getTestClass().getName();
+        String testName = result.getName();
+        System.out.printf("[TESTNG] %s.%s executed with status : %s%n", testClass, testName, status);
     }
 }

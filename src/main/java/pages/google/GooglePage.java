@@ -1,9 +1,13 @@
 package pages.google;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.base.BasePage;
+
+import java.time.Duration;
 
 /**
  * Класс для страницы "Google"
@@ -64,7 +68,7 @@ public class GooglePage extends BasePage {
     /**
      * Нажать на кнопку "Принять все"
      * в уведомлении о cookie
-     * **/
+     */
     public void acceptCookie(){
         waitElementIsDisplay(By.xpath(ACCEPT_COOKIE_BUTTON),3);
         click(By.xpath(ACCEPT_COOKIE_BUTTON));
@@ -108,9 +112,11 @@ public class GooglePage extends BasePage {
     public boolean isAttributeAdded(){
         try {
             waitForSeconds(2);
-            waitElementIsDisplay(By.xpath(INNER_ANIMATION_ELEMENT), 3);
-            return getAttributeValue(By.xpath(INNER_ANIMATION_ELEMENT),"style").contains("opacity");
+            String styleAttribute = getAttributeValue(By.xpath(INNER_ANIMATION_ELEMENT), "style");
+            System.out.println("[DEBUG] style attribute value: " + styleAttribute);
+            return styleAttribute != null && styleAttribute.contains("opacity");
         } catch (Exception ex) {
+            System.out.println("[ERROR] with exception : " + ex);
             return false;
         }
     }
@@ -122,6 +128,29 @@ public class GooglePage extends BasePage {
      */
     public boolean isCaptchaAppeared(){
         return isElementsDisplay(By.xpath(RECAPTCHA_TEXT));
+    }
+
+    /**
+     * Действия в зависимости от сценария:
+     * Если отобразилась кнопка для начала анимации - нажать на неё
+     * @throws RuntimeException если обнаружена CAPTCHA
+     */
+    public void clickOnButtonOrHandleCaptcha(){
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+            wait.until(d ->
+                    isElementDisplay(By.xpath(RECAPTCHA_TEXT)) ||
+                    isElementDisplay(By.xpath(REPLAY_ANIMATION_BUTTON)));
+
+            if (isCaptchaAppeared()){
+                System.out.println("[ERROR] CAPTCHA detected. Test cannot proceed automatically.");
+                throw new RuntimeException("[ERROR] CAPTCHA detected. Test cannot proceed automatically.");
+            } else {
+                clickAnimationButton();
+            }
+        } catch (TimeoutException ex) {
+            System.out.println("[INFO] Neither CAPTCHA nor animation button appeared within timeout");
+        }
     }
 
 }

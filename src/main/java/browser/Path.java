@@ -24,4 +24,8 @@ public class Path {
      * Путь к папке , в которую загружаются файлы
      */
     public static final String DOWNLOAD_DIR = USER_DIR + "\\src\\test\\resources\\downloadFiles\\";
+    /**
+     * Путь к папке с профилем "Google"
+     */
+    public static final String GOOGLE_PROFILE_DIR = USER_DIR + "\\src\\test\\resources\\googleProfile";
 }

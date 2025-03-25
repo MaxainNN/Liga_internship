@@ -31,15 +31,14 @@ echo -----------------------------------------
 :: Wait for files
 timeout /t 2 >nul
 
-:: Open TestsReport.html if it's exist
+:: Open report and exit
 IF EXIST target\TestsReport.html (
-    start target\TestsReport.html
+    start "" "target\TestsReport.html"
+    exit /b 0
+) ELSE IF EXIST target\surefire-reports\index.html (
+    start "" "target\surefire-reports\index.html"
+    exit /b 0
 ) ELSE (
-    echo File TestsReport.html not found!
+    echo No report files found!
+    exit /b 1
 )
-
-
-:END
-echo.
-echo Completed. Press any key to exit...
-pause >nul

@@ -71,7 +71,7 @@ public class BasePage {
     }
 
     /**
-     * Найти элементЫ на странице
+     * Найти элементы на странице
      * @param locator путь до элемента, тип - By
      * @return elements
      */
@@ -326,13 +326,23 @@ public class BasePage {
     }
 
     /**
-     * Получить значение атрибута CSS элемента
+     * Получить значение HTML атрибута
      * @param locator путь до элемента, тип - By
      * @param attribute название атрибута
      * @return значение найденного атрибута
      */
-    public String getAttributeValue(By locator, String attribute){
-        return findElement(locator).getCssValue(attribute);
+    public String getAttributeValue(By locator, String attribute) {
+        return findElement(locator).getAttribute(attribute);
+    }
+
+    /**
+     * Получить значение CSS свойства
+     * @param locator путь до элемента, тип - By
+     * @param property название свойства
+     * @return значение найденного свойства
+     */
+    public String getCssValue(By locator, String property){
+        return findElement(locator).getCssValue(property);
     }
 
     /**

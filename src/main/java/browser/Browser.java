@@ -13,13 +13,13 @@ import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.time.Duration;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 import static browser.Config.BROWSER_TYPE;
 import static browser.Config.WAIT;
-import static browser.Path.DRIVERS_PATH;
-import static browser.Path.DOWNLOAD_DIR;
+import static browser.Path.*;
 
 /**
  * Класс Browser предоставляет функциональность для инициализации и управления веб-драйвером.
@@ -116,6 +116,23 @@ public class Browser {
                  */
                 chromeOptions.addArguments("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) " +
                         "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36");
+                /**
+                 * Скрывает признаки автоматизации, Частично маскирует WebDriver от детекции как бота
+                 */
+                chromeOptions.addArguments("--disable-blink-features=AutomationControlled");
+                /**
+                 * Сохраняет cookies, кэш и историю между запусками тестов
+                 */
+                chromeOptions.addArguments("--user-data-dir=" + GOOGLE_PROFILE_DIR);
+                /**
+                 * Разрешает кросс-доменные запросы (отключает Same-Origin Policy)
+                 */
+                chromeOptions.addArguments("--disable-web-security");
+                /**
+                 * Удаляет навигационный флаг navigator.webdriver=true (?)
+                 * Скрывает использование ChromeDriver от JavaScript-детекторов
+                 */
+                chromeOptions.setExperimentalOption("excludeSwitches", Arrays.asList("enable-automation"));
                 /**
                  * Настройка , отвечающая за стратегию загрузки страницы
                  * Может быть normal , eager, none

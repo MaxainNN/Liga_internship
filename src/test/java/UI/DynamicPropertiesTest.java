@@ -31,25 +31,22 @@ public class DynamicPropertiesTest extends BaseTest {
     @Test(description = "Получить цвет кнопки 'Change Color', ожидать изменение цвета")
     public void step_2(){
         String initialColor = dynamicPropertiesPage.getColorBtn(BTN_COLOR_CHANGE);
-        System.out.println(initialColor);
+        System.out.println("[INFO] Initial color: " + initialColor);
         dynamicPropertiesPage.waitForColorChange();
         String afterChangeColor = dynamicPropertiesPage.getColorBtn(BTN_COLOR_CHANGE);
-        System.out.println(afterChangeColor);
+        System.out.println("[INFO] Color after change" + afterChangeColor);
         Assert.assertNotSame(initialColor, afterChangeColor);
     }
 
     @Test(description = "Обновить страницу, ожидать когда отобразиться кнопка 'Visible After 5 seconds'")
     public void step_3(){
         driver.navigate().refresh();
-        //dynamicPropertiesPage.click(BTN_VISIBLE_AFTER);
         dynamicPropertiesPage.waitElementIsDisplay(BTN_VISIBLE_AFTER,10);
     }
 
     @Test(description = "Обновить страницу, ожидать когда кнопка 'Will enable 5 seconds' станет доступна")
     public void step_4(){
         driver.navigate().refresh();
-        //dynamicPropertiesPage.click(BTN_VISIBLE_AFTER);
-        //Assert.assertTrue(dynamicPropertiesPage.isElementEnabled(BTN_ENABLE_AFTER));
         dynamicPropertiesPage.waitForElementsEnabled(BTN_ENABLE_AFTER,10);
         Assert.assertTrue(dynamicPropertiesPage.isElementEnabled(BTN_ENABLE_AFTER));
     }

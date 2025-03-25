@@ -21,10 +21,9 @@ public class GoogleTest extends BaseTest {
     public void step_01(){
         googlePage.openGooglePage();
         googlePage.search("naruto");
-        Assert.assertTrue(googlePage.isCaptchaAppeared());
-        //googlePage.clickAnimationButton();
-        //Assert.assertTrue(googlePage.isAttributeAdded());
+        googlePage.clickAnimationButton();
+        Assert.assertTrue(googlePage.isAttributeAdded());
         // For screenshot
-        //googlePage.waitForSeconds(3);
+        googlePage.waitForSeconds(3);
     }
 }
