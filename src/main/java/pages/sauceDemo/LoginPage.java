@@ -17,19 +17,14 @@ public class LoginPage extends BasePage {
 
     /**
      * Локатор до элемента с "Credentials" для usernames
-     * @param index индекс для логина пользователя.
-     * Если значение 1 , логин - "standard_user".
-     * Валидные значения от 1 до 6
-     * @return xpath к указанному пользвателю
      */
-    private String userNameCredentials(int index){
-        return String.format("//div[@class='login_credentials']/text()[%s]", index);
-    }
+    private static final String USERNAME_CREDENTIALS = "//div[@class='login_credentials']";
+
 
     /**
      * Локатор до элемента с "Credentials" для password
      */
-    private static final String PASSWORD_FOR_ALL_USERS = "//div[@class='login_password']/text()";
+    private static final String PASSWORD_FOR_ALL_USERS = "//div[@class='login_password']";
 
     /**
      * Локатор до поля "Username"
@@ -59,17 +54,33 @@ public class LoginPage extends BasePage {
     public void authorize(){
         openLoginPage();
         isElementDisplay(By.xpath(LOGIN_BUTTON));
-        sendKeys(By.xpath(USERNAME_FIELD),getText(By.xpath(userNameCredentials(1))));
-        sendKeys(By.xpath(PASSWORD_FIELD),getText(By.xpath(PASSWORD_FOR_ALL_USERS)));
+        sendKeys(By.xpath(USERNAME_FIELD),getLogin(1));
+        sendKeys(By.xpath(PASSWORD_FIELD),getPassword());
         click(By.xpath(LOGIN_BUTTON));
     }
 
     /**
-     * TODO
-     * Error
-     * "//div[@class='login_credentials']/text()[1]" is: [object Text]. It should be an element.
-     * **/
-    public String printLogin(){
-        return this.getText(By.xpath(userNameCredentials(1)));
+     * Получить логин
+     * @param index индекс логина (значения от 1 до 6)
+     * index is 1 = standard_user
+     * @return логин под указанным индексом
+     */
+    public String getLogin(int index){
+        String fullText = getText(By.xpath(USERNAME_CREDENTIALS));
+        String[] logins = fullText.split("\n");
+
+        if (index >= 0 && index < logins.length) {
+            return logins[index].trim();
+        } else {
+            throw new IndexOutOfBoundsException("Index " + index + " out of bound.");
+        }
     }
+
+    /**
+     * Получить пароль
+     */
+    public String getPassword(){
+        return getText(By.xpath(PASSWORD_FOR_ALL_USERS)).split("\n")[1];
+    }
+
 }

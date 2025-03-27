@@ -1,7 +1,6 @@
 package UI;
 
 import base.BaseTest;
-import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -24,14 +23,15 @@ public class SauceDemoTest extends BaseTest {
 
     @Test(description = "Авторизация на главной странице")
     public void step_01(){
-//        loginPage.authorize();
-        loginPage.openLoginPage();
-        System.out.println(loginPage.printLogin());
-//        Assert.assertTrue(productsPage.isProductsPageOpen());
+        loginPage.authorize();
+        Assert.assertTrue(productsPage.isProductsPageOpen());
     }
 
-    @Test(description = "Нажать на кнопку 'Add to cart'")
+    @Test(description = "Нажать на кнопку 'Add to cart' у первого элемента.")
     public void step_02(){
-        Assert.assertTrue(true);
+        productsPage.clickAddToCart("Sauce Labs Backpack");
+        Assert.assertEquals(productsPage.getCountOfProductsInCart(), "1");
     }
+
+    // Расписать до покупки
 }

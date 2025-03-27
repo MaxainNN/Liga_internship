@@ -26,16 +26,16 @@
             <class name="UI.SelectMenuTest"/>
         </classes>
     </test>
-<!--    <test name="GoogleTests">-->
-<!--        <classes>-->
-<!--            <class name="UI.GoogleTest"/>-->
-<!--        </classes>-->
-<!--    </test>-->
-<!--    <test name="SauceDemoTests">-->
-<!--        <classes>-->
-<!--            <class name="UI.SauceDemoTest"/>-->
-<!--        </classes>-->
-<!--    </test>-->
+    <test name="GoogleTests">
+        <classes>
+            <class name="UI.GoogleTest"/>
+        </classes>
+    </test>
+    <test name="SauceDemoTests">
+        <classes>
+            <class name="UI.SauceDemoTest"/>
+        </classes>
+    </test>
 
     <listeners>
         <listener class-name="utils.ExtentTestNGListener"/>

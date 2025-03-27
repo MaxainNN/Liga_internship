@@ -33,7 +33,7 @@ jobs:
 #        run: mv src/main/resources/chromedriver src/main/resources/chromedriver.exe
 
       - name: Build and test with Maven
-        run: mvn clean test -Dmaven.test.failure.ignore=true
+        run: mvn clean test
 #          if [[ "$RUNNER_OS" == "Linux" ]]; then
 #            echo "Running tests with Linux driver"
 #            mvn clean test -Dwebdriver.chrome.driver=$(pwd)/src/main/resources/chromedriver

@@ -38,7 +38,6 @@ public class DownloadUploadTest extends BaseTest {
         catch (IOException e) {
             e.printStackTrace();
         }
-        super.tearDownTest();
     }
 
     @Test(description = "Перейти на главную страницу, загрузить файл из 'testFiles'")

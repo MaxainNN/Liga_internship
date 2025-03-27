@@ -10,6 +10,7 @@ import pages.demoqa.elements.LinksPage;
  * Тест на "Links"
 */
 public class LinksTest extends BaseTest {
+
     private LinksPage linksPage;
 
     @BeforeClass
@@ -40,6 +41,7 @@ public class LinksTest extends BaseTest {
 
     @Test(description = "Перейти по ссылкам с вызовом методов со статус кодом")
     public void step_03(){
+        linksPage.waitForSeconds(3);
         linksPage.clickLink("created");
         Assert.assertTrue(linksPage.isStatusDisplay("201"));
         linksPage.clickLink("no-content");

@@ -12,7 +12,7 @@
 - [Полезные ссылки](#полезные-ссылки)
 - [Список литературы](#список-литературы)
 - [Что можно изучить еще](#что-изучить-еще)
-- [Дополнительные материалы](descriptions/additional_materials.md)
+- Дополнительные материалы
      - <span style="margin-right: 10px;"><img src="images/bug_icon.png" alt="Maven" width="30" height="30"></span>[Теория тестирования](descriptions/test_theory.md)
      - <span style="margin-right: 10px;"><img src="images/icons8-java-48.png" alt="Maven" width="30" height="30"></span>[Java](descriptions/java_tutorial.md) 
      - <span style="margin-right: 10px;"><img src="images/maven_icon_new.png" alt="Maven" width="30" height="30"></span>[Maven](descriptions/maven_tutorial.md)
@@ -108,7 +108,7 @@
 
 Проверка в консоли:
 
-<img src="images/java_mvn_check.png" alt="Пример вывода в консоли" width="500" height="300">
+<img src="images/java_mvn_check.png" alt="Пример вывода в консоли" width="600" height="300">
 
 Для запуска всех тестов использовать комманду:
 
@@ -122,17 +122,26 @@ mvn clean test
 - `target/TestsReport.html` - настраиваемый более современный отчет
 
 ## Пример отчета:
-Общие сведения:
 
-<img src="images/Report_example.png" alt="Общие сведения в отчете" width="500" height="300">
+### Общие сведения:
 
-Пример теста , который прошел успешно:
+<img src="images/intern_pr_general_r.png" alt="google_screen" width="600" height="300">
 
-<img src="images/Report_example_positive.png" alt="Тест прошел успешно" width="500" height="300">
+### Тесты , прошли успешно:
 
-Пример теста , который упал:
+<img src="images/intern_pr_general_all.png" alt="google_screen" width="600" height="300">
 
-<img src="images/Report_example_negative.png" alt="Тест упал" width="500" height="300">
+### Скриншот после Google теста:
+
+<img src="images/intern_pr_google_test_1.png" alt="google_screen" width="700" height="300">
+
+### Скриншот после DemoQA теста:
+
+<img src="images/intern_pr_demoqa_r.png" alt="google_screen" width="600" height="300">
+
+### Скриншот после SauceDemo теста:
+
+<img src="images/intern_pr_sauce_sc.png" alt="google_screen" width="600" height="300">
 
 # Полезные ссылки:
 - https://demoqa.com/ - сайт для тренировки написания `UI` тестов с различными формами (Используется в проекте)

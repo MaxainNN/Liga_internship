@@ -59,7 +59,7 @@ public class Browser {
                  * Настройка отвечающая за директорию, в которую будут загружаться файлы
                  * (Необходимо , чтобы путь был верный , иначе файлы будут загружены в
                  * дирректорию по умолчанию. Например в папку "Downloads" или "Загрузки")
-                 * **/
+                 */
                 HashMap<String, Object> chromePrefs = new HashMap<>();
                 chromePrefs.put("download.default_directory", DOWNLOAD_DIR);
                 /**
@@ -93,7 +93,7 @@ public class Browser {
                  * Настройка отвечающая за выполнение тестов в "headless" режиме
                  * (Выполнение теста не показывается на экране)
                  */
-//                chromeOptions.addArguments("--headless");
+                chromeOptions.addArguments("--headless");
                 /**
                  * Отключаем GPU (рекомендуется для headless-режима)
                  */
