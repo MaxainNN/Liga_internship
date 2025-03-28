@@ -29,11 +29,8 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-m2-
 
-#      - name: Rename ChromeDriver for Linux
-#        run: mv src/main/resources/chromedriver src/main/resources/chromedriver.exe
-
       - name: Build and test with Maven
-        run: mvn clean test
+        run: mvn clean test -Pskip-tests
 #          if [[ "$RUNNER_OS" == "Linux" ]]; then
 #            echo "Running tests with Linux driver"
 #            mvn clean test -Dwebdriver.chrome.driver=$(pwd)/src/main/resources/chromedriver

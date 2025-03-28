@@ -1,6 +1,6 @@
 ### TestNG
 
-<img src='../images/testng_long_title.png' alt='Testng' width='400' height='200'>
+<img src='../images/testng_long_title.png' alt='Testng' width='400' height='150'>
 
 `TestNG` - фрэймворк для для тестирования Java-приложений.
 

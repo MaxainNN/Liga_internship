@@ -63,6 +63,7 @@ public class ProductsPage extends BasePage {
      * Количество товаров в корзине
      */
     public String getCountOfProductsInCart(){
+        waitForSeconds(3);
         if (isCartNotEmpty()){
             return getText(By.xpath(CART_BADGE_WITH_NUMBERS));
         } else {
