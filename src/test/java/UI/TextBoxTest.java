@@ -14,7 +14,7 @@ import pages.demoqa.elements.TextBoxPage;
 /**
  * Тест на "Text Box"
 */
-public class TextBox extends BaseTest {
+public class TextBoxTest extends BaseTest {
     private MainPage mainPage;
     private TextBoxPage textBoxPage;
     private SecondPage secondPage;

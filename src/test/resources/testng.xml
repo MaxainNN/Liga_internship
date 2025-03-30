@@ -15,7 +15,7 @@
         </groups>
         <classes>
             <class name="UI.MainPageTest"/>
-            <class name="UI.TextBox"/>
+            <class name="UI.TextBoxTest"/>
             <class name="UI.CheckBoxTest"/>
             <class name="UI.RadioButtonTest"/>
             <class name="UI.ButtonTest"/>

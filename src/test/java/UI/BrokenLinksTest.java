@@ -5,7 +5,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import pages.demoqa.elements.BrokenLinks;
+import pages.demoqa.elements.BrokenLinksPage;
 
 import java.time.Duration;
 
@@ -13,11 +13,12 @@ import java.time.Duration;
  * Тест на "Broken Links - Images"
 */
 public class BrokenLinksTest extends BaseTest {
-    private BrokenLinks brokenLinks;
+
+    private BrokenLinksPage brokenLinks;
 
     @BeforeClass
     public void beforeClass() {
-        brokenLinks = new BrokenLinks(driver);
+        brokenLinks = new BrokenLinksPage(driver);
     }
 
     @Test(description = "Перейти на страницу, дождаться , когда одно из изображений загрузиться")
