@@ -1,7 +1,6 @@
 package pages.sauceDemo;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import pages.base.BasePage;
 
 public class ProductsPage extends BasePage {
@@ -9,6 +8,8 @@ public class ProductsPage extends BasePage {
     public ProductsPage(WebDriver driver) {
         super(driver);
     }
+
+    JavascriptExecutor js = (JavascriptExecutor) driver;
 
     /**
      * Локатор до заголовка страницы "Products"
@@ -37,6 +38,11 @@ public class ProductsPage extends BasePage {
     private static final String CART_BADGE_WITH_NUMBERS = "//span[@class='shopping_cart_badge']";
 
     /**
+     * Локатор до корзины
+     */
+    private static final String CART_LINK = "//a[@class='shopping_cart_link']";
+
+    /**
      * Проверка - отображается заголовок "Products"
      * @return true если отображается
      */
@@ -54,6 +60,7 @@ public class ProductsPage extends BasePage {
 
     /**
      * Проверка - корзина не пустая
+     * @return true если отображается плашка с количестовом товаров в корзине
      */
     public boolean isCartNotEmpty(){
         return isElementDisplay(By.xpath(CART_BADGE_WITH_NUMBERS));
@@ -61,14 +68,40 @@ public class ProductsPage extends BasePage {
 
     /**
      * Количество товаров в корзине
+     * @return количество товаров в корзине
+     * Тип - String
      */
     public String getCountOfProductsInCart(){
+        js.executeScript("window.scrollTo(0, 0)");
         waitForSeconds(3);
         if (isCartNotEmpty()){
             return getText(By.xpath(CART_BADGE_WITH_NUMBERS));
         } else {
             return "[ERROR] Something went wrong. Cart is empty.";
         }
+    }
+
+    /**
+     * Нажать "OK" в Alert окне "Change your password"
+     * На данной странице не работает т.к. окно вызывается "Google Chrome",
+     * а не JavaScript Alert.
+     */
+    public void handleAlert(){
+        try {
+            Alert alert = driver.switchTo().alert();
+            String alertText = alert.getText();
+            System.out.println("[INFO] Alert text: " + alertText);
+            alert.accept();
+        } catch (NoAlertPresentException e) {
+            System.out.println("[INFO] Alert not found!");
+        }
+    }
+
+    /**
+     * Нажать на корзину (Открыть)
+     */
+    public void openCart(){
+        click(By.xpath(CART_LINK));
     }
 
 }

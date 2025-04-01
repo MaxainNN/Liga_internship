@@ -87,13 +87,22 @@ public class Browser {
                  * Отключаем уведомления (о cookie и т.д.)
                  */
                 chromeOptions.addArguments("--disable-notifications");
-
+                chromeOptions.addArguments("--disable-save-password-bubble");
                 chromeOptions.addArguments("--disable-popup-blocking");
+                chromeOptions.addArguments("--disable-features=PasswordChange");
+                chromeOptions.addArguments("--disable-autofill-keyboard-accessory-view");
+                /**
+                 * Отключить проверку утечек паролей в Chrome
+                 * Используется в SauceDemo
+                 */
+                chromeOptions.addArguments("--disable-features=PasswordLeakDetection");
+                chromeOptions.addArguments("--password-store=basic");
+                chromeOptions.addArguments("--disable-blink-features=PasswordCheck");
                 /**
                  * Настройка отвечающая за выполнение тестов в "headless" режиме
                  * (Выполнение теста не показывается на экране)
                  */
-                chromeOptions.addArguments("--headless");
+//                chromeOptions.addArguments("--headless");
                 /**
                  * Отключаем GPU (рекомендуется для headless-режима)
                  */

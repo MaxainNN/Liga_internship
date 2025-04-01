@@ -4,6 +4,7 @@ import base.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import pages.sauceDemo.CartPage;
 import pages.sauceDemo.LoginPage;
 import pages.sauceDemo.ProductsPage;
 
@@ -14,11 +15,13 @@ public class SauceDemoTest extends BaseTest {
 
     private LoginPage loginPage;
     private ProductsPage productsPage;
+    private CartPage cartPage;
 
     @BeforeClass
     public void beforeClass(){
         loginPage = new LoginPage(driver);
         productsPage = new ProductsPage(driver);
+        cartPage = new CartPage(driver);
     }
 
     @Test(description = "Авторизация на главной странице")
@@ -33,5 +36,12 @@ public class SauceDemoTest extends BaseTest {
         Assert.assertEquals(productsPage.getCountOfProductsInCart(), "1");
     }
 
-    // Расписать до покупки
+    @Test(description = "Открыть корзину , нажать 'Checkout'", enabled = false)
+    public void step_03(){
+        productsPage.openCart();
+        cartPage.pressCheckout();
+        Assert.assertTrue(cartPage.getTextFromTitleClientInformation());
+    }
+
+
 }

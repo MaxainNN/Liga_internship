@@ -72,20 +72,20 @@ gitGraph
 
 ```mermaid
 graph TD
-    A["1. git clone"] --> B["2. git checkout -b feature"]
-    B --> C["3. Изменения в коде"]
-    C --> D["4. git add/commit"]
-    D --> E["5. git push origin feature"]
-    E --> F["6. Создать Pull Request"]
+    A["git clone"] --> B["git checkout -b feature"]
+    B --> C["Изменения в коде"]
+    C --> D["git add/commit"]
+    D --> E["git push origin feature"]
+    E --> F["Создать Pull Request"]
     F --> G{"Есть конфликты?"}
-    G -- Да --> H["7. git pull origin main"]
-    H --> I["8. Решение конфликтов"]
-    I --> J["9. git push исправлений"]
+    G -- Да --> H["git pull origin main"]
+    H --> I["Решение конфликтов"]
+    I --> J["git push исправлений"]
     J --> F
-    G -- Нет --> K["10. Мердж PR в main"]
-    K --> L["11. git checkout main"]
-    L --> M["12. git pull origin main"]
-    M --> N["13. git branch -d feature"]
+    G -- Нет --> K["Мердж PR в main"]
+    K --> L["git checkout main"]
+    L --> M["git pull origin main"]
+    M --> N["git branch -d feature"]
 ```
 
 ### Команды Git
