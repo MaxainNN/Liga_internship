@@ -102,7 +102,7 @@ public class Browser {
                  * Настройка отвечающая за выполнение тестов в "headless" режиме
                  * (Выполнение теста не показывается на экране)
                  */
-//                chromeOptions.addArguments("--headless");
+                chromeOptions.addArguments("--headless");
                 /**
                  * Отключаем GPU (рекомендуется для headless-режима)
                  */

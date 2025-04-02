@@ -58,12 +58,6 @@
                     <suiteXmlFiles>
                         <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
                     </suiteXmlFiles>
-                    <excludes>
-                        <!-- Test for CI-->
-                        <exclude>**/DownloadUploadTest.java</exclude>
-                        <exclude>**/GoogleTest.java</exclude>
-                        <exclude>**/SauceDemoTest.java</exclude>
-                    </excludes>
                 </configuration>
             </plugin>
             <plugin>

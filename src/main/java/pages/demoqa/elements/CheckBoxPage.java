@@ -6,7 +6,7 @@ import pages.base.BasePage;
 
 /**
  * Класс для "Check Box" элементов
- * **/
+ */
 public class CheckBoxPage extends BasePage {
 
     public CheckBoxPage(WebDriver driver) {

@@ -4,6 +4,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import pages.base.BasePage;
 
+/**
+ * Класс для страницы с корзиной "SauceDemo"
+ */
 public class CartPage extends BasePage {
 
     public CartPage(WebDriver driver) {

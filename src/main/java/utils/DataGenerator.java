@@ -6,7 +6,7 @@ import java.util.Random;
 
 /**
  * Класс для генерации (создания) данных
-*/
+ */
 public class DataGenerator {
 
     /**

@@ -11,7 +11,7 @@ import utils.ChromeOnlyTransformer;
 /**
  * Тест на страницу поиска "Google"
  * Тест запускается только в Chrome браузере
-*/
+ */
 @Listeners(ChromeOnlyTransformer.class)
 public class GoogleTest extends BaseTest {
 

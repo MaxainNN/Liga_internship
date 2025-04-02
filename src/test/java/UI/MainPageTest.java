@@ -12,8 +12,9 @@ import pages.demoqa.elements.CheckBoxPage;
 
 /**
  * Тест для главной страницы
-*/
+ */
 public class MainPageTest extends BaseTest {
+
     private MainPage mainPage;
     private SecondPage secondPage;
     private LeftPanel leftPanel;

@@ -9,7 +9,7 @@ import java.time.Duration;
 
 /**
  * Класс для "Dynamic Properties" элементов
-*/
+ */
 public class DynamicPropertiesPage extends BasePage {
 
     public DynamicPropertiesPage(WebDriver driver) {
@@ -19,7 +19,7 @@ public class DynamicPropertiesPage extends BasePage {
     /**
      * Url до страницы "Dynamic Properties"
      */
-    public static final String URL_DYNAMIC_PAGE = "https://demoqa.com/dynamic-properties";
+    private static final String URL_DYNAMIC_PAGE = "https://demoqa.com/dynamic-properties";
 
     /**
      * Локатор до кнопки "Will enable 5 seconds"

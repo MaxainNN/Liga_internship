@@ -2,7 +2,7 @@ package constant;
 
 /**
  * Enum Item содержит все элементы из выпадающих списков , с которыми можно взаимодействовать.
-*/
+ */
 public enum Item {
     TEXT_BOX ("Text Box"),
     CHECK_BOX ("Check Box"),

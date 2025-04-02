@@ -6,7 +6,7 @@ import pages.base.BasePage;
 
 /**
  * Класс для "Buttons" элементов
-*/
+ */
 public class ButtonsPage extends BasePage {
 
     public ButtonsPage(WebDriver driver) {

@@ -6,7 +6,7 @@ import pages.base.BasePage;
 
 /**
  * Класс для "Select Menu" виджетов
-*/
+ */
 public class SelectMenuPage extends BasePage {
 
     public SelectMenuPage(WebDriver driver) {

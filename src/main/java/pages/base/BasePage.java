@@ -17,7 +17,7 @@ import static browser.Config.EXPLICIT_WAIT;
 
 /**
  * Базовый класс для страницы. Методы , описанные в этом классе будут доступны для наследников.
-*/
+ */
 public class BasePage {
 
     protected WebDriver driver;

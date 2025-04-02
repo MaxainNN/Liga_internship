@@ -8,6 +8,8 @@ import java.lang.reflect.Method;
 
 /**
  * Класс- трансформер аннотаций
+ * Устанавливает enabled = false
+ * если браузер не Chrome
  */
 public class ChromeOnlyTransformer implements IAnnotationTransformer {
 

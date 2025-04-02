@@ -2,7 +2,7 @@ package constant;
 
 /**
  * Enum CategoryCards представляет собой  категории карточек, которые отображаются на главной странице.
-*/
+ */
 public enum CategoryCards {
     ELEMENTS ("Elements"),
     FORMS ("Forms"),

@@ -9,7 +9,7 @@ import pages.demoqa.widgets.SelectMenuPage;
 
 /**
  * Тест на "Select Menu"
-*/
+ */
 public class SelectMenuTest extends BaseTest {
 
     private SelectMenuPage selectMenuPage;
@@ -29,6 +29,16 @@ public class SelectMenuTest extends BaseTest {
     @Test(description = "В 'Old Style Select' выбрать Red")
     public void step_02(){
         selectMenuPage.setValueInOldStyleSelect("1");
+        Assert.assertTrue(true);
+    }
+
+    @Test(description = "Multiselect")
+    public void step_03(){
+        Assert.assertTrue(true);
+    }
+
+    @Test(description = "Second select")
+    public void step_04(){
         Assert.assertTrue(true);
     }
 }

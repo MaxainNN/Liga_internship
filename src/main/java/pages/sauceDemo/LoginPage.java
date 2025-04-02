@@ -4,6 +4,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import pages.base.BasePage;
 
+/**
+ * Класс для страницы с логином "SauceDemo"
+ */
 public class LoginPage extends BasePage {
 
     public LoginPage(WebDriver driver) {

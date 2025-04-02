@@ -6,7 +6,7 @@ import pages.base.BasePage;
 
 /**
  * Класс для пустой главной страницы , после выбора категории
-*/
+ */
 public class SecondPage extends BasePage {
 
     public SecondPage(WebDriver driver) {
@@ -16,12 +16,13 @@ public class SecondPage extends BasePage {
     /**
      * Локатор до изображения "Zero Step"
      */
-    public static final By ZERO_STEP_PICTURE = By.xpath("//a/img[@src='/images/zero-step.jpeg']");
+    private static final By ZERO_STEP_PICTURE = By.xpath("//a/img[@src='/images/zero-step.jpeg']");
 
     /**
      * Локатор до текста посередине страницы
      */
-    public static final By PLEASE_SELECT_AN_ITEM = By.xpath("//div[text()='Please select an item from left to start practice.']");
+    private static final By PLEASE_SELECT_AN_ITEM = By.xpath("//div[text()=" +
+            "'Please select an item from left to start practice.']");
 
     /**
      * Проверка - отображается картинка на странице (Zero Step)

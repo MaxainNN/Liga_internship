@@ -7,7 +7,7 @@ import pages.base.BasePage;
 
 /**
  * Класс для "Broken Links - Images" элементов
- * **/
+ */
 public class BrokenLinksPage extends BasePage {
 
     public BrokenLinksPage(WebDriver driver) {
@@ -18,10 +18,12 @@ public class BrokenLinksPage extends BasePage {
      * Url до страницы с "Broken Links - Images" элементами
      */
     private static final String BROKEN_LINKS_URL = "https://demoqa.com/broken";
+
     /**
      * Локатор ло изображения "Valid image"
      */
     public static final By LOADED_IMAGE = By.xpath("//img[@src='/images/Toolsqa.jpg']");
+
     /**
      * Докатор до изображения , которое не загрузилось (Broken image)
      */

@@ -11,9 +11,10 @@ import static pages.demoqa.elements.ButtonsPage.*;
 /**
  * Тест на "Buttons"
  * Пример с исключенным тестом
-*/
+ */
 @Test(groups = {"broken"})
 public class ButtonTest extends BaseTest {
+
     private ButtonsPage buttonsPage;
 
     @BeforeClass

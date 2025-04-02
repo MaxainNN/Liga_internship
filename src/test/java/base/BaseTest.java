@@ -7,8 +7,8 @@ import utils.ExtentTestNGListener;
 
 
 /**
-* Базовый класс теста.
-*/
+ * Базовый класс теста.
+ */
 public abstract class BaseTest {
 
     public WebDriver driver;

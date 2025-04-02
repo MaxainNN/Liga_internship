@@ -18,18 +18,19 @@ public class MainPage extends BasePage {
     /**
      * Url-адрес при перехода на главную страницу
      */
-    public static final String MAIN_PAGE = "https://demoqa.com/";
+    private static final String MAIN_PAGE = "https://demoqa.com/";
 
     /**
      * Локатор до баннера в верхней части страницы
      */
-    public static final By HOME_BANNER = By.xpath("//div[@class='home-banner'][a[@href='https://www.toolsqa.com/selenium-training/'][img[contains(@src,'WB.svg')]]]");
+    public static final By HOME_BANNER = By.xpath("//div[@class='home-banner']" +
+            "[a[@href='https://www.toolsqa.com/selenium-training/'][img[contains(@src,'WB.svg')]]]");
 
     /**
      * Локаторы для взаимодействия с категориями
      */
-    public static final  By CATEGORY_CARDS_XPATH = By.xpath("//h5[contains(text(),'')]");
-    public static final String CATEGORY_CARD_XPATH = "//h5[text()='%s']";
+    private static final  By CATEGORY_CARDS_XPATH = By.xpath("//h5[contains(text(),'')]");
+    private static final String CATEGORY_CARD_XPATH = "//h5[text()='%s']";
 
     /**
      * Открыть главную страницу

@@ -16,7 +16,7 @@ import static browser.Path.*;
 
 /**
  * Тест на "Upload and Download"
-*/
+ */
 public class DownloadUploadTest extends BaseTest {
 
     private DownloadPage downloadPage;

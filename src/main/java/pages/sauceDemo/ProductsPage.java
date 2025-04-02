@@ -3,6 +3,9 @@ package pages.sauceDemo;
 import org.openqa.selenium.*;
 import pages.base.BasePage;
 
+/**
+ * Класс для страницы со списком товаров "SauceDemo"
+ */
 public class ProductsPage extends BasePage {
 
     public ProductsPage(WebDriver driver) {

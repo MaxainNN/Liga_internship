@@ -13,7 +13,7 @@ import static browser.Config.EXPLICIT_WAIT;
 
 /**
  * Класс для боковой панели слева
-*/
+ */
 public class LeftPanel extends BasePage {
 
     public LeftPanel(WebDriver driver) {
@@ -23,18 +23,22 @@ public class LeftPanel extends BasePage {
     /**
      * Локаторы для взаимодействия с панелью
      */
-    public static final String LEFT_PANEL_BLOCK_XPATH = "//div[@class='left-pannel']//div[@class='element-group'][descendant::div[text()='%s']]";
-    public static final String OPEN_BLOCK_SVG_XPATH = LEFT_PANEL_BLOCK_XPATH + "/descendant::div[@class='icon']//*[name()='path' and @d='M3 19h18v2H3v-2zM13 5.828V17h-2V5.828L4.929 11.9l-1.414-1.414L12 2l8.485 8.485-1.414 1.414L13 5.83z']";
+    private static final String LEFT_PANEL_BLOCK_XPATH = "//div[@class='left-pannel']//" +
+            "div[@class='element-group'][descendant::div[text()='%s']]";
+    private static final String OPEN_BLOCK_SVG_XPATH = LEFT_PANEL_BLOCK_XPATH +
+            "/descendant::div[@class='icon']//*[name()='path' and @d='M3 19h18v2H3v-2zM13 " +
+            "5.828V17h-2V5.828L4.929 11.9l-1.414-1.414L12 2l8.485 8.485-1.414 1.414L13 5.83z']";
 
     /**
      * Локатор до всех элементов в блоке панели
      */
-    public static final String LIST_ON_BLOCK_XPATH = LEFT_PANEL_BLOCK_XPATH + "/div[contains(@class,'element-list collapse')]";
+    private static final String LIST_ON_BLOCK_XPATH = LEFT_PANEL_BLOCK_XPATH +
+            "/div[contains(@class,'element-list collapse')]";
 
     /**
      * Локатор до указанного элемента в блоке панели
      */
-    public static final String ITEM_XPATH = LEFT_PANEL_BLOCK_XPATH + "//li[span[text()='%s']]";
+    private static final String ITEM_XPATH = LEFT_PANEL_BLOCK_XPATH + "//li[span[text()='%s']]";
 
     /**
      * Проверка - панель отображается
