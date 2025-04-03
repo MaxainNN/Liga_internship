@@ -81,28 +81,67 @@ public class Browser {
                 chromeOptions.setExperimentalOption("prefs", chromePrefs);
                 /**
                  * Отключаем инфобар "Chrome is being controlled by automated test software"
+                 * Устаревший
                  */
                 chromeOptions.addArguments("--disable-infobars");
                 /**
-                 * Отключаем уведомления (о cookie и т.д.)
+                 * Отключаем все браузерные уведомления
                  */
                 chromeOptions.addArguments("--disable-notifications");
+                /**
+                 * Отключаем всплывающее окно "Сохранить пароль?".
+                 */
                 chromeOptions.addArguments("--disable-save-password-bubble");
+                /**
+                 * Разрешаем всплывающие окна, которые Chrome обычно блокирует.
+                 */
                 chromeOptions.addArguments("--disable-popup-blocking");
-                chromeOptions.addArguments("--disable-features=PasswordChange");
+                /**
+                 * Убираем подсказки автозаполнения на мобильных устройствах.
+                 */
                 chromeOptions.addArguments("--disable-autofill-keyboard-accessory-view");
+                /**
+                 * Отключаем все расширения Chrome.
+                 */
+                chromeOptions.addArguments("--disable-extensions");
+                /**
+                 * Запрещаем Chrome автоматически обновлять компоненты
+                 */
+                chromeOptions.addArguments("--disable-component-update");
                 /**
                  * Отключить проверку утечек паролей в Chrome
                  * Используется в SauceDemo
                  */
                 chromeOptions.addArguments("--disable-features=PasswordLeakDetection");
+                /**
+                 * Сохраняем пароли в незашифрованном виде
+                 */
                 chromeOptions.addArguments("--password-store=basic");
+                /**
+                 * Отключаем встроенную проверку паролей в Blink (движок Chrome)
+                 */
                 chromeOptions.addArguments("--disable-blink-features=PasswordCheck");
+                /**
+                 * Блокируем принудительную смену пароля.
+                 */
+                chromeOptions.addArguments("--disable-features=PasswordChangeInSettings");
+                /**
+                 * Отключаем повторную аутентификацию в менеджере паролей.
+                 */
+                chromeOptions.addArguments("--disable-password-manager-reauthentication");
+                /**
+                 * Скрываем интерфейс менеджера паролей.
+                 */
+                chromeOptions.addArguments("--disable-password-manager-ui");
+                /**
+                 * Отключаем индикатор сложности пароля.
+                 */
+                chromeOptions.addArguments("--disable-password-strength-meter");
                 /**
                  * Настройка отвечающая за выполнение тестов в "headless" режиме
                  * (Выполнение теста не показывается на экране)
                  */
-                chromeOptions.addArguments("--headless");
+//                chromeOptions.addArguments("--headless");
                 /**
                  * Отключаем GPU (рекомендуется для headless-режима)
                  */
@@ -112,7 +151,7 @@ public class Browser {
                  */
                 chromeOptions.addArguments("--window-size=1920,1080");
                 /**
-                 * Отключаем песочницу (полезно для CI/CD)
+                 * Отключаем песочницу (для CI/CD)
                  */
                 chromeOptions.addArguments("--no-sandbox");
                 /**

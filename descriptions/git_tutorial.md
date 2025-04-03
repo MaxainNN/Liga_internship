@@ -94,7 +94,7 @@ graph TD
 # Глобальные настройки
 git config --global user.name "Maxim Kalugin"
 git config --global user.email mkalugin@phoenixit.ru
-git config list # Посмотреть настройки
+git config --global --list # Посмотреть настройки
 git config --global credential.helper cache # Кэширование уч. данных
 
 git init # Создать репозиторий

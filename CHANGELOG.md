@@ -5,6 +5,9 @@
 - Дописан `Select Menu` тест
 - Дописан `SauceDemo` тест
 - Пройти `CI`
+- Описать `Devtools`
+- Описать `GitHub Actions`
+- Описать `DevtoolsHandler`
 
 ## 02.04
 
