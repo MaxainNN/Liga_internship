@@ -1,7 +1,9 @@
 package base;
 
 import browser.Browser;
+import io.qameta.allure.*;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.*;
 import utils.ExtentTestNGListener;
 
@@ -12,6 +14,8 @@ import utils.ExtentTestNGListener;
 public abstract class BaseTest {
 
     public WebDriver driver;
+    public static boolean useSelenoid;
+    public static String selenoidUrl;
 
     /**
      * Перед запуском тестового набора будут выполнены действия
@@ -33,10 +37,18 @@ public abstract class BaseTest {
     /**
      * Перед запуском первого тестового метода в классе будут выполены действия
      * Перед всеми тестами в классе будет создан экземпляр драйвера
+//     * @param useSelenoidParam использование Selenoid
+//     * @param selenoidUrlParam адрес Selenoid
      */
     @BeforeClass
+//    @Parameters({"use.selenoid", "selenoid.url"})
+    // String useSelenoidParam, String selenoidUrlParam
+    @Step("Создание драйвера, получение данных для отчета")
     public void setUpClass(){
         System.out.println("[INFO] Setting up before class.");
+//        useSelenoid = Boolean.parseBoolean(useSelenoidParam);
+//        selenoidUrl = selenoidUrlParam;
+//        System.out.println(String.format("[CONFIG] Selenoid mode: %s, URL: %s",useSelenoid, selenoidUrl));
         driver = Browser.createDriver();
         ExtentTestNGListener.setSystemInfo(driver);
     }
@@ -61,9 +73,25 @@ public abstract class BaseTest {
      * После всех тестовых методов в классе будут выполнены действия
      * После всех тестов в классе браузер будет закрыт
      */
-    @AfterClass
+    @AfterClass(alwaysRun = true)
+    @Step("Закрытие сессии драйвера")
     public void tearDownClass(){
         System.out.println("[INFO] Tearing down after all test's methods in class.");
+//        try {
+//            if (useSelenoid && driver instanceof RemoteWebDriver) {
+//                String sessionId = ((RemoteWebDriver) driver).getSessionId().toString();
+//                String videoUrl = selenoidUrl.replace("/wd/hub", "") + "/video/" + sessionId + ".mp4";
+//                System.out.println("VIDEO URL: " + videoUrl);
+//
+//                Allure.addAttachment("Selenoid Video", "text/uri-list", videoUrl);
+//            }
+//        } catch (Exception e) {
+//            System.err.println("Failed to get video URL: " + e.getMessage());
+//        } finally {
+//            if (driver != null) {
+//                driver.quit();
+//            }
+//        }
         if (driver != null) {
             driver.quit();
         }
@@ -85,5 +113,4 @@ public abstract class BaseTest {
     public void tearDownSuite(){
         System.out.println("[INFO] Tearing down after test suite.");
     }
-
 }

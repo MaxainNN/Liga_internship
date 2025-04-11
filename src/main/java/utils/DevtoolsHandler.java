@@ -2,10 +2,10 @@ package utils;
 
 import org.openqa.selenium.devtools.DevTools;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.devtools.v85.security.Security;
+import org.openqa.selenium.devtools.v114.security.Security;
 
 /**
- * Класс для взаимодействия с Devtools (?)
+ * Класс для взаимодействия с Devtools
  */
 public class DevtoolsHandler {
 

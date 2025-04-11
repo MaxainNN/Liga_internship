@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  # Selenoid (Selenium Grid в контейнерах)
+  selenoid:
+    image: aerokube/selenoid:latest
+    ports:
+      - "4444:4444"  # WebDriver порт
+      - "8080:8080"   # Selenoid UI
+    volumes:
+      - "C:/selenoid/config/:/etc/selenoid/"  # Конфиги браузеров
+      - "C:/selenoid/video/:/opt/selenoid/video/"  # Видео тестов
+      - "/var/run/docker.sock:/var/run/docker.sock"  # Доступ к Docker
+    environment:
+      - OVERRIDE_VIDEO_OUTPUT_DIR=C:/selenoid/video  # Сохранять видео на Windows
+    command: ["-limit", "10", "-timeout", "1m", "-container-network", "selenoid-network"]
+    networks:
+      - selenoid-network
+
+  # Selenoid UI (веб-интерфейс для мониторинга)
+  selenoid-ui:
+    image: aerokube/selenoid-ui:latest
+    ports:
+      - "9090:8080"
+    command: ["-selenoid-uri", "http://selenoid:4444"]
+#    environment:
+#      - SELENOID_URI=http://selenoid:4444
+    depends_on:
+      - selenoid
+    networks:
+      - selenoid-network
+
+  # Jenkins (для автоматизации тестов)
+  jenkins:
+    image: jenkins/jenkins:lts
+    ports:
+      - "8081:8080"
+      - "50000:50000"
+    volumes:
+      - "C:/jenkins_home:/var/jenkins_home"
+    environment:
+      - JAVA_OPTS=-Dhudson.plugins.git.GitSCM.ALLOW_LOCAL_CHECKOUT=true
+    networks:
+      - selenoid-network
+
+networks:
+  selenoid-network:
+    driver: bridge

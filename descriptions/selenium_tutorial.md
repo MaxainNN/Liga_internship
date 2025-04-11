@@ -2,6 +2,10 @@
 
 <img src='../images/selenium_long_title.jpg' alt='Test_pyramid' width='400' height='200'>
 
+### Иерархия WebDriver
+
+<img src="../images/web_dr_hierarchy.webp" width="1000" height="600">
+
 
 ### Примеры взаимодействия с Selenium API  
 
@@ -180,3 +184,225 @@ public class LoginPage {
        │   └── utils # Вспомогательные классы для тестов
        └── resources  # Ресурсы для тестов
 ```
+
+### Вложенные классы в RemoteWebDriver:
+
+<img src="../images/remote_dr_img.webp" height="700" width="1000">
+
+#### Конструкторы для создания экземпляров класса:
+
+- `RemoteWebDriver(ICapabilities)`
+- `RemoteWebDriver(Uri, ICapabilities)`
+- `RemoteWebDriver(ICommandExecutor, ICapabilities)`
+- `RemoteWebDriver(Uri, ICapabilities, TimeSpan)`
+
+Пример настройки `WebDriver`:
+
+<img src="../images/dr_sett_remote.webp" width="1000" height="520">
+
+#### Класс RemoteWebDriver имплементирует такие интерфейсы:
+
+- `WebDriver`
+- `JavaScriptExecutor`
+- `TakesScreenshot`
+- `HasVirtualAuthenticator`
+- `PrintsPage`
+- `HasCapabilities`
+- `Interactive`
+
+### Интерфейс WebDriver
+
+Это «ядро» `WebDriver`, ключевой интерфейс со всеми нужными 
+методами; и вложенными интерфейсами. Все эти методы симулируют 
+действия пользователя в браузере.
+
+<img src="../images/interf_dr.webp" width="1000" height="700">
+
+|Метод|Дейсвие|
+|:--:|:--:|
+|get(String url)|Метод возвращает пустое значение; для перехода по URL в параметре метода|
+|getCurrentUrl()|Возвращает текущий URL страницы|
+|getTitle()|Тайтл (title) текущей страницы|
+|findElements(By by)|Список веб-элементов для локатора, вызываемого By-классом Selenium’а (абстрактный класс)|
+|findElement(By by)|Веб-элемент (как выше, но один)|
+|getPageSource()|HTML-код последней загруженной страницы в виде DOM|
+|close()|Закрывает текущее окно (и закрывает браузер, если это было последнее окно)|
+|quit()|Прекращает сессию драйвера, закрывая каждое связанное  ней окно|
+|getWindowHandles()|Возвращает список дескрипторов окон (window handles), через них можно получить доступ ко всем открытым окнам этого экземпляра WebDriver|
+|getWindowHandle()|Возвращает текущий дескриптор окна (которое сейчас в фокусе) в текущем экземпляре WebDriver, чтобы потом переключиться на это окно.|
+|switchTo()|Возвращает TargetLocator для выбора фрейма или окна и отправки ему команд|
+|navigate()|Абстракция, позволяющая перейти по URL и по истории браузера|
+|manage()|Возвращает интерфейс Options|
+
+Сначала нужно импортировать нужные библиотеки и создать экземпляр `WebDriver`-объекта.
+
+<img src="../images/webdr_meth.webp" height="250" width="500">
+
+### Selenium Grid
+
+Архитектура `Selenium Grid`:
+
+<img src="../images/selenium_grid_pic.png" height="540" width="960">
+
+1) Скачать `Selenium server` с официального сайта.
+2) Распаковать на компьюетере. Пример пути - `C:\selenium-server-4.30.0`
+3) Открыть терминал в директории с `selenium-server-4.30.0.jar`
+
+<img src="../images/selenium_grid_jars.png" width="800" height="550">
+
+4) Выполнить команду :
+```bash
+   java -jar selenium-server-4.30.0.jar node --hub http://localhost:4444
+```
+
+Запутился hub.
+
+<img src="../images/selenium_grid_start_hub.png" width="1000" height="300">
+
+5) Открыть еще один терминал и выполнить комманду (Запустить локальный узел (node)) :
+
+```bash
+   java -jar selenium-server-4.30.0.jar node --hub http://localhost:4444
+```
+
+<img src="../images/selenium_grid_start_node.png" width="1000" height="450">
+
+Отображение hub'а на `localhost:4444`:
+
+<img src="../images/selenium_grid_with_node.png" width="1000" height="400">
+
+6) Указать параметры в классах:
+
+```java
+
+public class SeleniumGridTest{
+
+    boolean useGrid = Boolean.parseBoolean(System.getProperty("use.grid", "false"));
+
+    // hub localhost port - 4444
+    // node localhost port - 5555
+    String gridUrl = System.getProperty("grid.url", "http://192.168.0.192:4444/wd/hub");
+    
+    public void setupBrowser(){
+        //...
+        if (useGrid) {
+            try {
+                driver = new RemoteWebDriver(new URL(gridUrl), chromeOptions);
+            } catch (MalformedURLException e) {
+                throw new RuntimeException("Invalid Grid URL: " + gridUrl, e);
+            }    
+        }
+            //...
+    }
+     
+     @Test   
+     public void executeTest(){
+         System.setProperty("use.grid", "true");
+         driver = createDriver();
+         driver.get("https://habr.com/ru/hubs/web_testing/articles/page1/");
+         System.out.println("[INFO] Page title: " + driver.getTitle());
+     }
+}
+
+```
+
+`Capabilities` во время выполнения теста:
+
+<img src="../images/selenium_grid_caps.png" width="1000" height="400">
+
+Результаты теста в `IDEA`:
+
+<img src="../images/selenium_grid_test_res.png" width="1000" height="300">
+
+[Официальная документация](https://www.selenium.dev/documentation/grid/getting_started/)
+
+### Selenoid
+
+Пример архитектуры с использованием `Jenkins`:
+
+<img src="../images/selenoid_management_pic.png" width="1000" height="450">
+
+Запуск с использованием `Selenoid`:
+
+```bash
+   mvn test -Duse.selenoid=true -Dselenoid.url=http://localhost:4444/wd/hub
+```
+
+Запуск с использованием `Selenium Grid`:
+
+```bash
+   mvn test -Duse.grid=true -Dgrid.url=http://192.168.0.192:4444/wd/hub
+```
+
+Для запуска с использованием `Selenoid` :
+
+1) Создать папки на компьютере (или изменить конфигурацию в `docker-compose`):
+```plaintext
+C:\selenoid\config\
+C:\selenoid\video\
+C:\jenkins_home\
+```
+
+2) Создать файл с конфигурацией браузеров в `C:\selenoid\config\browsers.json`:
+
+```json
+{
+  "chrome": {
+    "default": "latest",
+    "versions": {
+      "latest": {
+        "image": "selenoid/chrome:latest",
+        "port": "4444",
+        "shmSize": 134217728
+      }
+    }
+  },
+  "firefox": {
+    "default": "latest",
+    "versions": {
+      "latest": {
+        "image": "selenoid/firefox:latest",
+        "port": "4444"
+      }
+    }
+  }
+}
+```
+3) Выполнить команду в корне проекта:
+
+```bash
+   docker-compose up -d
+```
+
+Будут доступны сервисы:
+
+- `Selenoid UI`: http://localhost:9090
+- `Jenkins`: http://localhost:8081
+- `Selenoid Hub`: http://localhost:4444/wd/hub
+
+4) Проверить настройки инициализации браузера:
+
+```java
+
+public class Browser {
+    
+    public void createBrowser(){
+
+        //...
+        // Настройки удаленного драйвера
+        DesiredCapabilities caps = new DesiredCapabilities();
+        caps.setBrowserName("chrome");
+        caps.setVersion("latest");
+        caps.setCapability("enableVNC", true);
+        caps.setCapability("enableVideo", true);
+
+        WebDriver driver = new RemoteWebDriver(
+                new URL("http://localhost:4444/wd/hub"),
+                caps
+        );
+        //...
+    }
+}
+```
+
+[Официальная документация](https://aerokube.com/selenoid/latest/)

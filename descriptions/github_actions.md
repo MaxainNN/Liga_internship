@@ -6,7 +6,7 @@
 Он используется для:
 - ✅ Запуска тестов при каждом `push/pull` request в `master`.
 - ✅ Кэширования зависимостей `Maven` (ускоряет сборку).
-- ✅ Генерации отчетов (` Surefire`, `ExtentReport`).
+- ✅ Генерации отчетов (`Surefire`, `ExtentReport`, `Allure`).
 
 Файл располоагается в `.github/workflows`
 
@@ -54,9 +54,8 @@ jobs:
           name: surefire-reports
           path: target/surefire-reports/
 
-      # Если есть Allure
       - name: Generate Allure Report
-        if: always() && success()  # Только если Allure настроен
+        if: always() && success()
         run: |
           mvn allure:report
       - name: Upload Allure Report

@@ -6,12 +6,17 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeDriverService;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxDriverService;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.firefox.GeckoDriverService;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.time.Duration;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -28,6 +33,28 @@ import static browser.Path.*;
  */
 public class Browser {
 
+    /**
+     * Параметр для определения использования Selenium Grid
+     */
+    boolean useGrid = Boolean.parseBoolean(System.getProperty("use.grid", "false"));
+
+    /**
+     * Параметр для определения использования Selenoid
+     */
+    boolean useSelenoid = Boolean.parseBoolean(System.getProperty("use.selenoid", "false"));
+
+    /**
+     * Параметр для определения url с hub Selenium Grid
+     * Указан дефолтный url для hub'а , локальная nod'а на порту 5555
+     */
+    String gridUrl = System.getProperty("grid.url", "http://192.168.0.192:4444/wd/hub");
+
+    /**
+     * Параметр для определения url с hub Selenoid,
+     * который поднят в Docker
+     */
+    String selenoidUrl = System.getProperty("selenoid.url", "http://localhost:4444/wd/hub");
+
     public static WebDriver driver;
 
     /**
@@ -39,20 +66,33 @@ public class Browser {
     public static WebDriver createDriver(){
 
         /**
+         * Параметр для определения использования Selenium Grid
+         */
+        boolean useGrid = Boolean.parseBoolean(System.getProperty("use.grid", "false"));
+
+        /**
+         * Параметр для определения использования Selenoid
+         */
+        boolean useSelenoid = Boolean.parseBoolean(System.getProperty("use.selenoid", "false"));
+
+        /**
+         * Параметр для определения url с hub Selenium Grid
+         * Указан дефолтный url для hub'а , локальная nod'а на порту 5555
+         */
+        String gridUrl = System.getProperty("grid.url", "http://192.168.0.192:4444/wd/hub");
+
+        /**
+         * Параметр для определения url с hub Selenoid,
+         * который поднят в Docker
+         */
+        String selenoidUrl = System.getProperty("selenoid.url", "http://localhost:4444/wd/hub");
+
+        /**
          * Используется конструкция "switch-case" для описания инициализации и настройки браузера
          */
         switch (BROWSER_TYPE){
             case "chrome":
                 System.setProperty("webdriver.chrome.driver", DRIVERS_PATH + "chromedriver.exe");
-
-                // Создаём сервис с выводом логов в консоль
-                ChromeDriverService service = new ChromeDriverService.Builder()
-                        .withLogOutput(System.out)
-                        .withAppendLog(true)
-                        .withReadableTimestamp(true)
-                        // Очень подробные логи
-                        //.withVerbose(true)
-                        .build();
 
                 ChromeOptions chromeOptions = new ChromeOptions();
                 /**
@@ -141,7 +181,7 @@ public class Browser {
                  * Настройка отвечающая за выполнение тестов в "headless" режиме
                  * (Выполнение теста не показывается на экране)
                  */
-//                chromeOptions.addArguments("--headless");
+                chromeOptions.addArguments("--headless");
                 /**
                  * Отключаем GPU (рекомендуется для headless-режима)
                  */
@@ -189,7 +229,37 @@ public class Browser {
                  * могут еще загружаться
                  */
                 chromeOptions.setCapability(CapabilityType.PAGE_LOAD_STRATEGY, "eager");
-                driver = new ChromeDriver(service, chromeOptions);
+
+                if (useSelenoid) {
+                    chromeOptions.setCapability("browserName", "chrome");
+                    chromeOptions.setCapability("browserVersion", "latest");
+                    chromeOptions.setCapability("enableVNC", true);
+                    chromeOptions.setCapability("enableVideo", true);
+                    chromeOptions.setCapability("screenResolution", "1920x1080x24");
+
+                    try {
+                        driver = new RemoteWebDriver(new URL(selenoidUrl), chromeOptions);
+                    } catch (MalformedURLException e) {
+                        throw new RuntimeException("Invalid Selenoid URL: " + selenoidUrl, e);
+                    }
+                } else if (useGrid) {
+                    try {
+                        driver = new RemoteWebDriver(new URL(gridUrl), chromeOptions);
+                    } catch (MalformedURLException e) {
+                        throw new RuntimeException("Invalid Grid URL: " + gridUrl, e);
+                    }
+                } else {
+                    ChromeDriverService service = new ChromeDriverService.Builder()
+                            .withLogOutput(System.out)
+                            .withAppendLog(true)
+                            .withReadableTimestamp(true)
+                            // Очень подробные логи
+                            //.withVerbose(true)
+                            .build();
+
+                    driver = new ChromeDriver(service, chromeOptions);
+                }
+
                 break;
             case "edge":
                 System.setProperty("webdriver.edge.driver", DRIVERS_PATH + "msedgedriver.exe");
@@ -199,14 +269,68 @@ public class Browser {
                 options.setExperimentalOption("prefs", prefs);
                 options.addArguments("--headless");
                 options.setCapability(CapabilityType.PAGE_LOAD_STRATEGY, "eager");
-                driver = new EdgeDriver(options);
+
+                if (useSelenoid) {
+                    options.setCapability("browserName", "edge");
+                    options.setCapability("browserVersion", "latest");
+                    options.setCapability("enableVNC", true);
+                    options.setCapability("enableVideo", true);
+                    options.setCapability("screenResolution", "1920x1080x24");
+
+                    try {
+                        driver = new RemoteWebDriver(new URL(selenoidUrl), options);
+                    } catch (MalformedURLException e) {
+                        throw new RuntimeException("Invalid Selenoid URL: " + selenoidUrl, e);
+                    }
+                } else if (useGrid) {
+                    try {
+                        driver = new RemoteWebDriver(new URL(gridUrl), options);
+                    } catch (MalformedURLException e) {
+                        throw new RuntimeException("Invalid Grid URL: " + gridUrl, e);
+                    }
+                } else {
+                    EdgeDriverService service = new EdgeDriverService.Builder()
+                            .withLogOutput(System.out)
+                            .withAppendLog(true)
+                            .withReadableTimestamp(true)
+                            .build();
+
+                    driver = new EdgeDriver(service, options);
+                }
+
                 break;
             case "firefox":
                 System.setProperty("webdriver.firefox.driver", DRIVERS_PATH + "geckodriver.exe");
                 FirefoxOptions fOptions = new FirefoxOptions();
                 fOptions.addArguments("--headless");
                 fOptions.setCapability(CapabilityType.PAGE_LOAD_STRATEGY, "eager");
-                driver = new FirefoxDriver(fOptions);
+
+                if (useSelenoid) {
+                    fOptions.setCapability("browserName", "edge");
+                    fOptions.setCapability("browserVersion", "latest");
+                    fOptions.setCapability("enableVNC", true);
+                    fOptions.setCapability("enableVideo", true);
+                    fOptions.setCapability("screenResolution", "1920x1080x24");
+
+                    try {
+                        driver = new RemoteWebDriver(new URL(selenoidUrl), fOptions);
+                    } catch (MalformedURLException e) {
+                        throw new RuntimeException("Invalid Selenoid URL: " + selenoidUrl, e);
+                    }
+                } else if (useGrid) {
+                    try {
+                        driver = new RemoteWebDriver(new URL(gridUrl), fOptions);
+                    } catch (MalformedURLException e) {
+                        throw new RuntimeException("Invalid Grid URL: " + gridUrl, e);
+                    }
+                } else {
+                    FirefoxDriverService service = new GeckoDriverService.Builder()
+                            .withLogOutput(System.out)
+                            .build();
+
+                    driver = new FirefoxDriver(service, fOptions);
+                }
+
                 break;
             default:
                 System.out.println("Некорректное имя браузера: " + BROWSER_TYPE);

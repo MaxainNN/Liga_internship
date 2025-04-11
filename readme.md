@@ -1,6 +1,6 @@
 ![Логотип компании](/images/Liga_img.jpg)
 
-# Проект "Основы тестирования"
+# Проект "Тестирование веб-сервисов"
 
 - [Описание](#описание)
 - [Стэк](#технологии--используемые-в-данном-проекте)
@@ -11,7 +11,6 @@
 - [Отчеты](#после-выполнения-тестов-будут-доступны-отчеты-)
 - [Полезные ссылки](#полезные-ссылки)
 - [Список литературы](#список-литературы)
-- [Что можно изучить еще](#что-изучить-еще)
 - Дополнительные материалы
      - <span style="margin-right: 10px;"><img src="images/bug_icon.png" alt="Maven" width="30" height="30"></span>[Теория тестирования](descriptions/test_theory.md)
      - <span style="margin-right: 10px;"><img src="images/icons8-java-48.png" alt="Maven" width="30" height="30"></span>[Java](descriptions/java_tutorial.md) 
@@ -20,7 +19,12 @@
      - <span style="margin-right: 10px;"><img src="images/xpath_icon.svg" alt="Xpath" width="40" height="30"></span>[Xpath](descriptions/xpath_tutorial.md)
      - <span style="margin-right: 10px;"><img src="images/testbng_icon.png" alt="TestNG" width="40" height="30"></span>[TestNG](descriptions/testng_tutorial.md)
      - <span style="margin-right: 10px;"><img src="images/selenium_icon.svg" alt="Selenium" width="30" height="30"></span>[Selenium](descriptions/selenium_tutorial.md)
-     - <span style="margin-right: 10px;"><img src="images/idea_icon.png" alt="Selenium" width="30" height="30"></span>[Idea](descriptions/idea_tutorial.md)
+     - <span style="margin-right: 10px;"><img src="images/idea_icon.png" alt="Idea" width="30" height="30"></span>[Idea](descriptions/idea_tutorial.md)
+     - <span style="margin-right: 10px;"><img src="images/devtools_icon.png" alt="Devtools" width="30" height="30"></span>[Devtools](descriptions/devtools.md)
+     - <span style="margin-right: 10px;"><img src="images/github_icon.png" alt="GH Actions" width="30" height="30"></span>[GitHub Actions](descriptions/github_actions.md)
+     - <span style="margin-right: 10px;"><img src="images/docker_icon.svg" alt="Docker" width="30" height="30"></span>[Docker](descriptions/docker_tutorial.md)
+     - <span style="margin-right: 10px;"><img src="images/allure_r.png" alt="Allure Report" width="30" height="30"></span>[Allure Report](descriptions/allure_tutorial.md)
+     - <span style="margin-right: 10px;"><img src="images/jenkins_icon_n.svg" alt="Jenkins" width="30" height="30"></span>[Jenkins](descriptions/jenkins_tutorial.md)
 
 
 # Описание:
@@ -29,6 +33,8 @@
 - <span style="margin-right: 5px;">[DemoQA](https://demoqa.com/)</span> <img src='images/demoqa_long_icon.jpg' alt='demoqa' width='70' height='30'>
 - <span style="margin-right: 5px;">[SauceDemo](https://www.saucedemo.com/)</span> <img src='images/saucedemo_long_icon.svg' alt='saucedemo' width='70' height='30'>
 - <span style="margin-right: 5px;">[Google](https://www.google.com/)</span>  <img src='images/google_title.png' alt='google' width='70' height='30'>
+- <span style="margin-right: 5px;">[Habr](https://habr.com/ru/feed/)</span>  <img src='images/habr_icon.webp' alt='habr' width='30' height='30'>
+- <span style="margin-right: 5px;">[Test Engineer](https://testengineer.ru/)</span>  <img src='images/test_ing_icon.png' alt='habr' width='30' height='30'>
 
 
 # Технологии , используемые в данном проекте:
@@ -37,7 +43,9 @@
 - Framework для тестирования пользовательских интерфейсов <img src="images/selenium_icon.svg" alt="Selenium" width="30" height="30"> `Selenium` Версии 4.10
 - Библиотека для запуска тестов <img src="images/testbng_icon.png" alt="TestNG" width="40" height="30"> `TestNG` Версии 7.8
 - Framework для создания отчетов <img src="images/extent_report_ico.jfif" alt="ExtentReport" width="30" height="30"> `ExtentReport` Версии 5.1
-
+- Framework для создания отчетов `Allure Report` <img src="images/allure_r.png" alt="Allure" width="30" height="30"> Версии 2.24
+- Инструмент для параллельного запуска тестов в Docker-контейнерах с браузерами `Selenoid` <img src="images/selenoid_icon.png" alt="Selenoid" width="30" height="30"> Версии Latest
+- CI/CD-сервер для автоматизации сборки, тестирования и развертывания `Jenkins` <img src="images/jenkins_icon_n.svg" alt="Jenkins" width="30" height="30"> Версии 2.492.2
 
 # Описание структуры проекта:
 
@@ -158,25 +166,6 @@ mvn clean test
 - Фулстэк тестирование (Гаятри Мохан) главы 1-3
 - Selenium Testing Tools Cookbook Second Edition (Unmesh Gundecha)
 - ISTQB Certified Tester - Foundation Level Syllabus v4.0
-
-# Что изучить еще:
-- [Devtools](https://developer.chrome.com/docs/devtools) <img src="images/devtools_icon.png" alt="Devtools" width="25" height="25"> , умение пользоваться консолью в браузере.
-- Подход чтения настроек из файлов типа `.env` <img src="images/env_icon.png" alt="Env icon" width="25" height="25"> и `.properties`
-- Запуск тестов с использованием [Proxy](https://www.selenium.dev/documentation/webdriver/drivers/options/) <img src="images/proxy_icon.png" alt="Proxy icon" width="25" height="25">
-- [RestAssured](https://rest-assured.io/) <img src="images/restassured_icon.png" alt="Restassured" width="25" height="25"> - инструмент для тестирования API на java
-- [Playwright](https://playwright.dev/) <img src="images/playwright_icon.svg" alt="Playwright" width="40" height="30"> - фрэймворк для тестирования пользовательских интерфесов (альтернатива Selenium)
-- [WebDriverManager](https://github.com/bonigarcia/webdrivermanager) <img src="images/WebDriverM_Icon.png" alt="WebDriverManager" width="25" height="25"> - библиотека для загрузки и инициализации драйвера актуальной версии
-- [Allure Report](https://allurereport.org/) <img src="images/allure_icon.png" alt="AllureReport" width="25" height="25"> - инструмент для генерации отчета по результатам тестов
-- [Gradle](https://gradle.org/) <img src="images/gradle_icon.png" alt="Gradle" width="25" height="25"> - альтернативный инструмент для сборки проекта
-- [JUnit 5](https://junit.org/junit5/) <img src="images/junit_icon.png" alt="JUnit" width="25" height="25"> - инструмент для запуска тестов. Аналог TestNG.
-- [Jenkins](https://www.jenkins.io/) <img src="images/jenkins_icon.png" alt="Jenkins" width="25" height="25"> - инструмент для настройки CI/CD процессов
-- [Postman](https://www.postman.com/) <img src="images/postman_icon.svg" alt="Postman" width="25" height="25"> - инструмент для тестирования API (HTTP клиент)
-- [Apache Kafka](https://kafka.apache.org/) <img src="images/kafka_icon.svg" alt="Kafka" width="25" height="25"> - распределенный брокер сообщений
-- [ELK (Elasticsearch, Logstash, Kibana](https://www.elastic.co/elasticsearch) <img src="images/elastic_icon.png" alt="Elastic" width="25" height="25"> <img src="images/logstash_icon.png" alt="Logstash" width="25" height="25"> <img src="images/kibana_icon.png" alt="Kibana" width="25" height="25"> - сервис для хранения и поиска данных (логов)
-- [Charles](https://www.charlesproxy.com/) <img src="images/charles_icon.jfif" alt="Charles" width="25" height="25"> - снифер трафика
-- [Docker](https://www.docker.com/) <img src="images/docker_icon.png" alt="Docker" width="25" height="25"> - программа для контейнеризации, развертывания приложений
-- [Apache JMeter](https://jmeter.apache.org/) <img src="images/icons8-apache-a-free-and-open-source-cross-platform-web-server-software-48.png" alt="Jmeter" width="25" height="25"> - инструмент для нагрузочного тестирования
-- [Grafana](https://grafana.com/) <img src="images/grafana_icon.jfif" alt="Grafana" width="25" height="25"> - сервис для просмотра метрик
 
 ### 
 
