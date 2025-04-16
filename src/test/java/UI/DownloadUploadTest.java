@@ -1,6 +1,10 @@
 package UI;
 
 import base.BaseTest;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Step;
+import io.qameta.allure.Story;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
@@ -17,6 +21,9 @@ import static browser.Path.*;
 /**
  * Тест на "Upload and Download"
  */
+@Epic("DEMOQA")
+@Feature("Upload and Download elements")
+@Story("Тест Upload and Download элементов")
 public class DownloadUploadTest extends BaseTest {
 
     private DownloadPage downloadPage;
@@ -27,6 +34,7 @@ public class DownloadUploadTest extends BaseTest {
     }
 
     @AfterTest
+    @Step("Удаление загруженного файла")
     public void afterTest(){
         /**
          * После выполения теста папка с загрузками очищается
@@ -41,6 +49,7 @@ public class DownloadUploadTest extends BaseTest {
     }
 
     @Test(description = "Перейти на главную страницу, загрузить файл из 'testFiles'")
+    @Step("Загрузка файла из папки 'testFiles'")
     public void step_01(){
         downloadPage.openDownloadPage();
         downloadPage.uploadFile(TEST_FILES_PATH + "funny_cat.jpg");
@@ -48,6 +57,7 @@ public class DownloadUploadTest extends BaseTest {
     }
 
     @Test(description = "Нажать на 'Download'")
+    @Step("Скачивание файла")
     public void step_02(){
         downloadPage.downloadFile();
         Assert.assertTrue(downloadPage.isFileDownloaded(DOWNLOAD_DIR + "sampleFile.jpeg"));

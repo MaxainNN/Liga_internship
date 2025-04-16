@@ -2,10 +2,15 @@ package base;
 
 import browser.Browser;
 import io.qameta.allure.*;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.testng.ITestResult;
 import org.testng.annotations.*;
 import utils.ExtentTestNGListener;
+
+import java.io.ByteArrayInputStream;
 
 
 /**
@@ -23,6 +28,8 @@ public abstract class BaseTest {
     @BeforeSuite
     public void setUpSuite(){
         System.out.println("[INFO] Setting up before test suite.");
+
+        // Env vars
     }
 
     /**
@@ -37,18 +44,20 @@ public abstract class BaseTest {
     /**
      * Перед запуском первого тестового метода в классе будут выполены действия
      * Перед всеми тестами в классе будет создан экземпляр драйвера
-//     * @param useSelenoidParam использование Selenoid
-//     * @param selenoidUrlParam адрес Selenoid
+     * @param useSelenoidParam использование Selenoid
+     * @param selenoidUrlParam адрес Selenoid
      */
     @BeforeClass
-//    @Parameters({"use.selenoid", "selenoid.url"})
-    // String useSelenoidParam, String selenoidUrlParam
+    @Parameters({"use.selenoid", "selenoid.url"})
     @Step("Создание драйвера, получение данных для отчета")
-    public void setUpClass(){
+    public void setUpClass(@Optional("false") String useSelenoidParam,
+                           @Optional("http://localhost:4444/wd/hub") String selenoidUrlParam){
         System.out.println("[INFO] Setting up before class.");
-//        useSelenoid = Boolean.parseBoolean(useSelenoidParam);
-//        selenoidUrl = selenoidUrlParam;
-//        System.out.println(String.format("[CONFIG] Selenoid mode: %s, URL: %s",useSelenoid, selenoidUrl));
+
+        useSelenoid = Boolean.parseBoolean(useSelenoidParam);
+        selenoidUrl = selenoidUrlParam;
+        System.out.println(String.format("[CONFIG] Selenoid mode: %s, URL: %s",useSelenoid, selenoidUrl));
+
         driver = Browser.createDriver();
         ExtentTestNGListener.setSystemInfo(driver);
     }
@@ -65,8 +74,12 @@ public abstract class BaseTest {
      * После каждого тестового метода будут выполнены действия
      */
     @AfterMethod
-    public void tearDownMethod(){
+    public void tearDownMethod(ITestResult result){
         System.out.println("[INFO] Tearing down after each test method");
+
+        if (result.getStatus() == ITestResult.FAILURE || result.getStatus() == ITestResult.SUCCESS) {
+            takeScreenshot("Screenshot after test: " + result.getName());
+        }
     }
 
     /**
@@ -77,23 +90,21 @@ public abstract class BaseTest {
     @Step("Закрытие сессии драйвера")
     public void tearDownClass(){
         System.out.println("[INFO] Tearing down after all test's methods in class.");
-//        try {
-//            if (useSelenoid && driver instanceof RemoteWebDriver) {
-//                String sessionId = ((RemoteWebDriver) driver).getSessionId().toString();
-//                String videoUrl = selenoidUrl.replace("/wd/hub", "") + "/video/" + sessionId + ".mp4";
-//                System.out.println("VIDEO URL: " + videoUrl);
-//
-//                Allure.addAttachment("Selenoid Video", "text/uri-list", videoUrl);
-//            }
-//        } catch (Exception e) {
-//            System.err.println("Failed to get video URL: " + e.getMessage());
-//        } finally {
-//            if (driver != null) {
-//                driver.quit();
-//            }
-//        }
-        if (driver != null) {
-            driver.quit();
+
+        try {
+            if (useSelenoid && driver instanceof RemoteWebDriver) {
+                String sessionId = ((RemoteWebDriver) driver).getSessionId().toString();
+                String videoUrl = selenoidUrl.replace("/wd/hub", "") + "/video/" + sessionId + ".mp4";
+                System.out.println("VIDEO URL: " + videoUrl);
+
+                Allure.addAttachment("Selenoid Video", "text/uri-list", videoUrl);
+            }
+        } catch (Exception e) {
+            System.err.println("Failed to get video URL: " + e.getMessage());
+        } finally {
+            if (driver != null) {
+                driver.quit();
+            }
         }
     }
 
@@ -112,5 +123,21 @@ public abstract class BaseTest {
     @AfterSuite
     public void tearDownSuite(){
         System.out.println("[INFO] Tearing down after test suite.");
+    }
+
+    /**
+     * Создает скриншот и прикрепляет его к Allure отчету
+     * @param name название скриншота в отчете
+     */
+    @Step("Создание скриншота: {name}")
+    public void takeScreenshot(String name) {
+        if (driver != null) {
+            try {
+                byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+                Allure.addAttachment(name, new ByteArrayInputStream(screenshot));
+            } catch (Exception e) {
+                System.err.println("Failed to take screenshot: " + e.getMessage());
+            }
+        }
     }
 }

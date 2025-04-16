@@ -1,6 +1,10 @@
 package UI;
 
 import base.BaseTest;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Step;
+import io.qameta.allure.Story;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -9,6 +13,9 @@ import pages.demoqa.elements.LinksPage;
 /**
  * Тест на "Links"
 */
+@Epic("DEMOQA")
+@Feature("Links elements")
+@Story("Тест Links элементов")
 public class LinksTest extends BaseTest {
 
     private LinksPage linksPage;
@@ -19,6 +26,7 @@ public class LinksTest extends BaseTest {
     }
 
     @Test(description = "Перейти на страницу , перейти по 1-ой ссылке, закрыть новою вкладку")
+    @Step("Переход по первой ссылке, закрытие новой вкладки")
     public void step_01(){
         linksPage.openLinksPage();
         linksPage.click(linksPage.HOME_LINK);
@@ -29,7 +37,8 @@ public class LinksTest extends BaseTest {
         driver.switchTo().window(linksPage.tabs.get(0));
     }
 
-    @Test(description = "перейти по 2-ой ссылке, закрыть новою вкладку")
+    @Test(description = "Перейти по 2-ой ссылке, закрыть новою вкладку")
+    @Step("Переход по второй ссылке, закрытие новой вкладки")
     public void step_02(){
         linksPage.click(linksPage.HOME_LINK_1);
         linksPage.set_tabs(driver);
@@ -40,6 +49,7 @@ public class LinksTest extends BaseTest {
     }
 
     @Test(description = "Перейти по ссылкам с вызовом методов со статус кодом")
+    @Step("Переход по ссылкам с получение статус кодов")
     public void step_03(){
         linksPage.waitForSeconds(3);
         linksPage.clickLink("created");

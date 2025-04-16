@@ -27,15 +27,24 @@ public class AllureReportTest extends BaseTest {
 }
 ```
 
-4) Запустить тест
-5) Выполнить комманду (В папке должен быть `allure-results`):
+4) Запустить тесты :
 
 ```bash
-   allure serve
+   mvn clean test
+```
+
+5) Выполнить комманду для генерации отчета:
+
+```bash
+   mvn allure:report
 ```
 
 Пример `Allure Report`:
 
 <img src="../images/allure_report_base.png" height="400" width="1000">
+
+Workflow `Allure Report` :x
+
+<img src="../images/allure_workflow.png" height="500" width="1000">
 
 [Интеграция с TestNG](https://allurereport.org/docs/testng/)
