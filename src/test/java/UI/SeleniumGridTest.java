@@ -1,6 +1,9 @@
 package UI;
 
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import io.qameta.allure.Step;
+import io.qameta.allure.Story;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -20,6 +23,9 @@ import static io.qameta.allure.Allure.step;
  * Нет наследования от BaseTest
  * Для теста не реализован Page Object
  */
+@Epic("HABR")
+@Feature("Test articles")
+@Story("Тест раздела по тестированию веб сервисов")
 public class SeleniumGridTest {
 
     private WebDriver driver;

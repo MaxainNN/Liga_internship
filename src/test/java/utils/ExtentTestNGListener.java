@@ -24,7 +24,7 @@ import java.util.Date;
 import static browser.Path.SCREENSHOT_DIR;
 
 /**
- * Кастомный листенер для генерации отчета
+ * Кастомный листенер для генерации отчета - Extent Report
  */
 public class ExtentTestNGListener implements ITestListener {
 
@@ -114,7 +114,6 @@ public class ExtentTestNGListener implements ITestListener {
                 e.printStackTrace();
             }
         }
-
     }
 
     @Override

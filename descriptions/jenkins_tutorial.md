@@ -130,6 +130,8 @@ pipeline {
 12) Генерация `SSH keys` :
 TODO
 
-# Jenkins data:
-- Username - Maxim
-- Pass - maxmax1823
+[//]: # (# Jenkins data:)
+
+[//]: # (- Username - Maxim)
+
+[//]: # (- Pass - maxmax1823)

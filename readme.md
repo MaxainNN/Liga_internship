@@ -44,7 +44,7 @@
 - Библиотека для запуска тестов <img src="images/testbng_icon.png" alt="TestNG" width="40" height="30"> `TestNG` Версии 7.8
 - Framework для создания отчетов <img src="images/extent_report_ico.jfif" alt="ExtentReport" width="30" height="30"> `ExtentReport` Версии 5.1
 - Framework для создания отчетов `Allure Report` <img src="images/allure_r.png" alt="Allure" width="30" height="30"> Версии 2.24
-- Инструмент для параллельного запуска тестов в Docker-контейнерах с браузерами `Selenoid` <img src="images/selenoid_icon.png" alt="Selenoid" width="30" height="30"> Версии Latest
+- Инструмент для параллельного запуска тестов в Docker-контейнерах с браузерами `Selenoid` <img src="images/selenoid_icon.png" alt="Selenoid" width="30" height="30"> Версии 1.13.3
 - CI/CD-сервер для автоматизации сборки, тестирования и развертывания `Jenkins` <img src="images/jenkins_icon_n.svg" alt="Jenkins" width="30" height="30"> Версии 2.492.2
 
 # Описание структуры проекта:
@@ -127,8 +127,32 @@ mvn clean test
 
 ## После выполнения тестов будут доступны отчеты :
 
-- `target/surefire-reports/index.html` - дефолтный отчет
-- `target/TestsReport.html` - настраиваемый более современный отчет
+- `target/surefire-reports/index.html` - `Surefire` отчет
+- `target/TestsReport.html` - `ExtentReport` отчет
+
+## После выполения команд :
+
+```bash
+mvn site
+```
+
+```bash
+mvn surefire-report:report-only
+```
+
+## Будет доступен отчет:
+
+- `target/site/surefire-report.html` - `Surefire site` отчет
+
+## После выполнения команды :
+
+```bash
+mvn allure:report
+```
+
+## Будет доступен отчет:
+
+- `target/site/allure-report/index.html` - `Allure` отчет
 
 ## Пример отчета:
 

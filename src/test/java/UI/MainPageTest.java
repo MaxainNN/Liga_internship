@@ -2,6 +2,10 @@ package UI;
 
 import base.BaseTest;
 import constant.CategoryCards;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Step;
+import io.qameta.allure.Story;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -13,6 +17,9 @@ import pages.demoqa.elements.CheckBoxPage;
 /**
  * Тест для главной страницы
  */
+@Epic("DEMOQA")
+@Feature("Main page actions")
+@Story("Тест открытия вкладок с главной страницы")
 public class MainPageTest extends BaseTest {
 
     private MainPage mainPage;
@@ -27,6 +34,7 @@ public class MainPageTest extends BaseTest {
     }
 
     @Test(description = "Переход на главную страницу")
+    @Step("Открытие главной страницы")
     public void step_01(){
         mainPage.openMainPage();
         Assert.assertTrue(mainPage.isElementDisplay(MainPage.HOME_BANNER));
@@ -34,6 +42,7 @@ public class MainPageTest extends BaseTest {
     }
 
     @Test(description = "Открытие категории 'Elements'")
+    @Step("Открытие категории 'Elements'")
     public void step_02(){
         secondPage = mainPage.openCategoryCards(CategoryCards.ELEMENTS);
         Assert.assertTrue(leftPanel.isLeftPanelDisplayed());
@@ -42,6 +51,7 @@ public class MainPageTest extends BaseTest {
 
     @Test(description = "Выбор подкатегории 'Check Box'" +
             "Отмечание чек-бокса 'Home'")
+    @Step("Выбор подкатегории 'Check Box' и отмечание чек-бокса 'Home'")
     public void step_03(){
         checkBoxPage = leftPanel.openCheckBoxPage();
         checkBoxPage.getCheckBoxState("Home");

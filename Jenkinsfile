@@ -16,12 +16,6 @@ pipeline {
     }
 
     stages {
-        stage('Checkout') {
-            steps {
-                checkout scm
-            }
-        }
-
         stage('Test') {
             steps {
                 script {
@@ -55,7 +49,6 @@ pipeline {
                     results: [[path: 'target/allure-results']]
             }
         }
-    }
 
     stage('Publish Video Links') {
         when {
@@ -86,9 +79,7 @@ pipeline {
             cleanWs()
         }
         failure {
-            emailtext body: 'Сборка ${BUILD_URL} завершилась с ошибкой',
-                subject: 'FAILED: Job ${JOB_NAME} - Build ${BUILD_NUMBER}',
-                to: 'team@example.com'
+            echo "Fail"
         }
     }
 }

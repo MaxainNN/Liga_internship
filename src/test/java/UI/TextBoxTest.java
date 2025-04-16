@@ -3,6 +3,10 @@ package UI;
 import base.BaseTest;
 import constant.CategoryCards;
 import constant.Item;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Step;
+import io.qameta.allure.Story;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -14,6 +18,9 @@ import pages.demoqa.elements.TextBoxPage;
 /**
  * Тест на "Text Box"
 */
+@Epic("DEMOQA")
+@Feature("TextBox elements")
+@Story("Тест TextBox элементов")
 public class TextBoxTest extends BaseTest {
     private MainPage mainPage;
     private TextBoxPage textBoxPage;
@@ -32,6 +39,7 @@ public class TextBoxTest extends BaseTest {
     }
 
     @Test(description = "Перейти на главную страницу, Нажать на 'Elements', Нажать на 'Text Box'")
+    @Step("Открытие главной страницы, нажатие на 'Text Box'")
     public void step_01() {
         mainPage.openMainPage();
         secondPage = mainPage.openCategoryCards(CategoryCards.ELEMENTS);
@@ -42,6 +50,7 @@ public class TextBoxTest extends BaseTest {
     }
 
     @Test(description = "Заполнить поля на странице значениями, нажать 'Submit'")
+    @Step("Заполнение всех полей, нажатие на кнопку 'Submit'")
     public void step_02() {
         textBoxPage.setFullName(fullName);
         textBoxPage.setEmail(email);
