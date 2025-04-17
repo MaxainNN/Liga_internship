@@ -16,11 +16,18 @@
         <aspectj.version>1.9.20.1</aspectj.version>
         <maven-surefire.version>3.0.0-M5</maven-surefire.version>
         <maven-site.version>3.12.1</maven-site.version>
+        <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
+        <spotbugs-maven-plugin.version>4.8.3.0</spotbugs-maven-plugin.version>
         <allure.plugin.version>2.12.0</allure.plugin.version>
         <commons-io.version>2.16.1</commons-io.version>
         <selenium-java.version>4.10.0</selenium-java.version>
+        <webdrivermanager.vesrion>5.9.2</webdrivermanager.vesrion>
+        <log4j.version>2.24.3</log4j.version>
+        <awaitility.version>4.2.0</awaitility.version>
+        <javafaker.version>1.0.2</javafaker.version>
         <testng.version>7.8.0</testng.version>
         <extentreports.version>5.1.0</extentreports.version>
+        <argline.expression>-javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"</argline.expression>
     </properties>
 
     <dependencyManagement>
@@ -42,6 +49,13 @@
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
             <version>${selenium-java.version}</version>
+        </dependency>
+
+        <!-- WebDriverManager для автоматического скачивания драйверов -->
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>${webdrivermanager.vesrion}</version>
         </dependency>
 
         <!-- TestNG - фрэймворк, предоставляющий возможность управления тестами.-->
@@ -74,6 +88,41 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- Зависимости для логирования -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j-impl</artifactId>
+            <version>${log4j.version}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <!-- Генерация тестовых данных -->
+        <dependency>
+            <groupId>com.github.javafaker</groupId>
+            <artifactId>javafaker</artifactId>
+            <version>${javafaker.version}</version>
+        </dependency>
+
+        <!-- Обработка ожиданий -->
+        <dependency>
+            <groupId>org.awaitility</groupId>
+            <artifactId>awaitility</artifactId>
+            <version>${awaitility.version}</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -82,7 +131,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.11.0</version>
+                <version>${maven-compiler-plugin.version}</version>
                 <configuration>
                     <source>17</source>
                     <target>17</target>
@@ -98,14 +147,8 @@
                         <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
                     </suiteXmlFiles>
                     <argLine>
-                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                        ${argline.expression}
                     </argLine>
-                    <systemProperties>
-                        <property>
-                            <name>use.selenoid</name>
-                            <value>false</value>
-                        </property>
-                    </systemProperties>
                 </configuration>
                 <dependencies>
                     <dependency>
@@ -126,6 +169,50 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-site-plugin</artifactId>
                 <version>${maven-site.version}</version>
+            </plugin>
+
+            <!-- Плагин предназначен для запуска интеграционных тестов -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>${maven-surefire.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                        <configuration>
+                            <includes>
+                                <!-- Тесты с суффиксом IT (Integration Test) -->
+                                <include>**/*IT.java</include>
+                            </includes>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Статический анализатор кода, который ищет потенциальные баги
+            (null-пойнтеры, утечки памяти, неоптимальные циклы) -->
+            <plugin>
+                <groupId>com.github.spotbugs</groupId>
+                <artifactId>spotbugs-maven-plugin</artifactId>
+                <version>${spotbugs-maven-plugin.version}</version>
+                <configuration>
+                    <effort>Max</effort>
+                    <threshold>Low</threshold>
+                    <xmlOutput>true</xmlOutput>
+                    <htmlOutput>true</htmlOutput>
+<!--                    <outputDirectory>${project.build.directory}/spotbugs-reports</outputDirectory>-->
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
 
             <plugin>

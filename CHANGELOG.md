@@ -10,10 +10,19 @@
 - Дописан `SeleniumGrid` тест (Переписать название , добавить новые шаги)
 - Дописан `AllureReport` тест (Переписать название , добавить новые шаги)
 - Актуализировать `Jenkinsfile` (Протестировать с интеграцией `Selenoid`)
-- Добавить в `POM` : `Assembly plugin` , `Checkstyle plugin` , `Jacoco plugin`
+- Добавить в `POM` : `Assembly plugin` , `Checkstyle plugin` , `Jacoco plugin`, `Enforcer plugin`
 - Написать `TestRunner` для запуска тестов через `jar` файл
 - Дописать недостающие описания из `TODO` файла
 - В `Jenkins` описании , добавить описание интеграции
+- Добавить логирование с `log4j` для всех тестовых классов
+
+## 17.04
+
+- Добавлен `WebDriverManager`
+- Исправлен класс `Browser`
+- Добавлено логирование для `BaseTest`
+- Добавлены новые зависимости (`Javafaker`, `log4j`, `awaitility`)
+- Добавлены новые плагины (`Failsafe`, `Spotbugs`)
 
 ## 16.04
 

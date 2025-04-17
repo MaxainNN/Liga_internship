@@ -1,5 +1,8 @@
 package browser;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -33,6 +36,7 @@ import static browser.Path.*;
  */
 public class Browser {
 
+    protected static final Logger logger = LogManager.getLogger(Browser.class);
     /**
      * Параметр для определения использования Selenium Grid
      */
@@ -92,7 +96,10 @@ public class Browser {
          */
         switch (BROWSER_TYPE){
             case "chrome":
-                System.setProperty("webdriver.chrome.driver", DRIVERS_PATH + "chromedriver.exe");
+                WebDriverManager.chromedriver().setup();
+
+                // Для использования локального драйвера
+                // System.setProperty("webdriver.chrome.driver", DRIVERS_PATH + "chromedriver.exe");
 
                 ChromeOptions chromeOptions = new ChromeOptions();
                 /**
@@ -262,7 +269,8 @@ public class Browser {
 
                 break;
             case "edge":
-                System.setProperty("webdriver.edge.driver", DRIVERS_PATH + "msedgedriver.exe");
+                WebDriverManager.edgedriver().setup();
+                // System.setProperty("webdriver.edge.driver", DRIVERS_PATH + "msedgedriver.exe");
                 EdgeOptions options = new EdgeOptions();
                 Map <String, Object> prefs = new HashMap<>();
                 prefs.put("download.default_directory", DOWNLOAD_DIR);
@@ -300,7 +308,8 @@ public class Browser {
 
                 break;
             case "firefox":
-                System.setProperty("webdriver.firefox.driver", DRIVERS_PATH + "geckodriver.exe");
+                WebDriverManager.firefoxdriver().setup();
+                // System.setProperty("webdriver.firefox.driver", DRIVERS_PATH + "geckodriver.exe");
                 FirefoxOptions fOptions = new FirefoxOptions();
                 fOptions.addArguments("--headless");
                 fOptions.setCapability(CapabilityType.PAGE_LOAD_STRATEGY, "eager");
@@ -333,7 +342,7 @@ public class Browser {
 
                 break;
             default:
-                System.out.println("Некорректное имя браузера: " + BROWSER_TYPE);
+                logger.info("Некорректное имя браузера: {}", BROWSER_TYPE);
         }
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(WAIT));

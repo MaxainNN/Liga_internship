@@ -93,13 +93,8 @@
 # Комментарии по стилю кода:
 - Проект написан в соответствии с паттерном проектирования `Page Object Model`
 - Проект написан в соответстии с практиками и рекомендациями `Code Policy` принятыми в компании для `Java`
-- Не учитывается использование `WebDriverManager`, выбора типа операционной системы.
-- Не используется логирование с помошью библиотек `sl4j` и `log4j2`
+- Не учитывается выбор типа операционной системы для браузера.
 - Тесты выполняются последовательно в одном потоке , для настройки многопоточности использовать `testng.xml`
-- В качестве браузера по умолчанию выбран - <img src="images/chrome_icon.png" alt="Chrome" width="25" height="25"> [Chrome](https://googlechromelabs.github.io/chrome-for-testing/) версии 134.0.6998.90 (актуальной на момент создания проекта). Для запуска возможно потребуется актуализация.
-- Также есть возможность запуска тестов в <img src="images/firefox_icon.png" alt="Firefox" width="25" height="25"> [Firefox](https://github.com/mozilla/geckodriver/releases) (версии 136.0.2) и <img src="images/egde_icon.png" alt="Edge" width="25" height="25"> [Edge](https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver?form=MA13LH) (версии 133.0.3065.92) браузерах. Для настройки использовать класс `Config`
-- Использованы драйверы для OS - <img src="images/windows_icon.png" alt="Windows" width="25" height="25"> `Windows`. Для тестирования на <img src="images/linux_icon.png" alt="Linux" width="25" height="25"> `Linux` требуется скачать соответствующий драйвер.
-- Используется `CI pipeline` для `GitHub Actions` в качестве примера
 
 # Для скачивания проекта:
 1. Нажать на зеленую кнопку "`Code`"
@@ -119,10 +114,16 @@
 
 <img src="images/java_mvn_check.png" alt="Пример вывода в консоли" width="600" height="300">
 
-Для запуска всех тестов использовать комманду:
+## Для запуска всех тестов использовать комманду:
 
 ```bash
 mvn clean test
+```
+
+## Для запуска интеграционных тестов (В разработке) использовать :
+
+```bash
+mvn verify
 ```
 
 ## После выполнения тестов будут доступны отчеты :
@@ -153,6 +154,16 @@ mvn allure:report
 ## Будет доступен отчет:
 
 - `target/site/allure-report/index.html` - `Allure` отчет
+
+## Для генерации отчета с анализом кода использовать :
+
+```bash
+mvn spotbugs:check
+```
+
+## Будет доступен отчет:
+
+- `target/spotbugs.html` - `Spotbugs` отчет
 
 ## Пример отчета:
 

@@ -2,6 +2,8 @@ package base;
 
 import browser.Browser;
 import io.qameta.allure.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -18,6 +20,7 @@ import java.io.ByteArrayInputStream;
  */
 public abstract class BaseTest {
 
+    protected static final Logger logger = LogManager.getLogger(BaseTest.class);
     public WebDriver driver;
     public static boolean useSelenoid;
     public static String selenoidUrl;
@@ -27,7 +30,7 @@ public abstract class BaseTest {
      */
     @BeforeSuite
     public void setUpSuite(){
-        System.out.println("[INFO] Setting up before test suite.");
+        logger.info("Setting up before test suite.");
 
         // Env vars
     }
@@ -38,7 +41,7 @@ public abstract class BaseTest {
      */
     @BeforeTest
     public void setUpTest(){
-        System.out.println("[INFO] Setting up before test.");
+        logger.info("Setting up before test.");
     }
 
     /**
@@ -52,11 +55,11 @@ public abstract class BaseTest {
     @Step("Создание драйвера, получение данных для отчета")
     public void setUpClass(@Optional("false") String useSelenoidParam,
                            @Optional("http://localhost:4444/wd/hub") String selenoidUrlParam){
-        System.out.println("[INFO] Setting up before class.");
+        logger.info("Setting up before class.");
 
         useSelenoid = Boolean.parseBoolean(useSelenoidParam);
         selenoidUrl = selenoidUrlParam;
-        System.out.println(String.format("[CONFIG] Selenoid mode: %s, URL: %s",useSelenoid, selenoidUrl));
+        logger.info(String.format("Selenoid mode: %s, URL: %s",useSelenoid, selenoidUrl));
 
         driver = Browser.createDriver();
         ExtentTestNGListener.setSystemInfo(driver);
@@ -67,7 +70,7 @@ public abstract class BaseTest {
      */
     @BeforeMethod
     public void setUpMethod(){
-        System.out.println("[INFO] Setting up before each test method");
+        logger.info("Setting up before each test method");
     }
 
     /**
@@ -75,9 +78,11 @@ public abstract class BaseTest {
      */
     @AfterMethod
     public void tearDownMethod(ITestResult result){
-        System.out.println("[INFO] Tearing down after each test method");
-
-        if (result.getStatus() == ITestResult.FAILURE || result.getStatus() == ITestResult.SUCCESS) {
+        if (result.getStatus() == ITestResult.FAILURE) {
+            logger.error("Test {} failed!", result.getName(), result.getThrowable());
+            takeScreenshot("Screenshot after test: " + result.getName());
+        } else if (result.getStatus() == ITestResult.SUCCESS) {
+            logger.info("Test {} passed.", result.getName());
             takeScreenshot("Screenshot after test: " + result.getName());
         }
     }
@@ -89,18 +94,18 @@ public abstract class BaseTest {
     @AfterClass(alwaysRun = true)
     @Step("Закрытие сессии драйвера")
     public void tearDownClass(){
-        System.out.println("[INFO] Tearing down after all test's methods in class.");
+        logger.info("Tearing down after all test's methods in class.");
 
         try {
             if (useSelenoid && driver instanceof RemoteWebDriver) {
                 String sessionId = ((RemoteWebDriver) driver).getSessionId().toString();
                 String videoUrl = selenoidUrl.replace("/wd/hub", "") + "/video/" + sessionId + ".mp4";
-                System.out.println("VIDEO URL: " + videoUrl);
+                logger.info("Selenoid Video URL: {}", videoUrl);
 
                 Allure.addAttachment("Selenoid Video", "text/uri-list", videoUrl);
             }
         } catch (Exception e) {
-            System.err.println("Failed to get video URL: " + e.getMessage());
+            logger.error("Failed to get video URL: {}", e.getMessage());
         } finally {
             if (driver != null) {
                 driver.quit();
@@ -114,7 +119,7 @@ public abstract class BaseTest {
      */
     @AfterTest
     public void tearDownTest(){
-        System.out.println("[INFO] Tearing down after all test's methods.");
+        logger.info("Tearing down after all test's methods.");
     }
 
     /**
@@ -122,7 +127,7 @@ public abstract class BaseTest {
      */
     @AfterSuite
     public void tearDownSuite(){
-        System.out.println("[INFO] Tearing down after test suite.");
+        logger.info("Tearing down after test suite.");
     }
 
     /**
@@ -136,7 +141,7 @@ public abstract class BaseTest {
                 byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
                 Allure.addAttachment(name, new ByteArrayInputStream(screenshot));
             } catch (Exception e) {
-                System.err.println("Failed to take screenshot: " + e.getMessage());
+                logger.error("Failed to take screenshot: {}", e.getMessage());
             }
         }
     }
