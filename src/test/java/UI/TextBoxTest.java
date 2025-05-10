@@ -17,7 +17,7 @@ import pages.demoqa.elements.TextBoxPage;
 
 /**
  * Тест на "Text Box"
-*/
+ */
 @Epic("DEMOQA")
 @Feature("TextBox elements")
 @Story("Тест TextBox элементов")

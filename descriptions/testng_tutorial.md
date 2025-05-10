@@ -4,6 +4,10 @@
 
 `TestNG` - фрэймворк для для тестирования Java-приложений.
 
+### Архитектура:
+
+<img src="../images/TestNG-Architecture-min.webp" alt="Testng_arch" width="640" height="464">
+
 ### Основные аннотации:
 
 |     Аннотация      |                                 	Описание                                 |
@@ -20,6 +24,12 @@
 |    @Parameters	    |            Позволяет передавать параметры из testng.xml в тест            |
 |   @DataProvider    |          	Возвращает данные для параметризованных тестов                  |
 |    @Listeners	     | Подключает кастомные listeners (например, для логирования или скриншотов) |
+
+Порядок выполнения аннотаций:
+
+<img src="../images/testng-annotations-min.webp" alt="testng_anno" height="469" width="840">
+
+<img src="../images/testng_anno_square.webp" alt="testng_anno2" height="368" width="559">
 
 ### Для управления тестов используется `testng.xml`:
 
@@ -123,5 +133,106 @@ public class ExampleTest {
     }
 }
 ```
+
+### Параметризированные тесты
+
+Параметризация предназначена для запуска теста с 
+разными данными (параметрами). Например, создается отдельный 
+метод для приема данных из другого файла. Тестовый метод 
+становится реюзабельным, может запускаться с разными 
+подборками данных. Применяются аннотации `@Parameter `
+и/или `@DataProvider`. Аннотируем метод при помощи `@Parameter`:
+
+```java
+@Test
+@Parameters({"value", "isEven"})
+public void givenNumberFromXML_ifEvenCheckOK_thenCorrect(int value, boolean isEven) {
+    assertEquals(isEven, value % 2 == 0);
+}
+```
+
+И передаем данные через `XML`:
+
+```xml
+<suite name="My test suite">
+    <test name="numbersXML">
+        <parameter name="value" value="1"/>
+        <parameter name="isEven" value="false"/>
+        <classes>
+            <class name="UI.AllureReportTest"/>
+        </classes>
+    </test>
+</suite>
+```
+
+Для сложной структуры используется `@DataProvider`:
+
+```java
+@DataProvider(name = "numbers")
+public static Object[][] evenNumbers() {
+    return new Object[][]{{1, false}, {2, true}, {4, true}};
+}
+ 
+@Test(dataProvider = "numbers")
+public void givenNumberFromDataProvider_ifEvenCheckOK_thenCorrect(Integer number, boolean expected) {    
+    assertEquals(expected, number % 2 == 0);
+}
+```
+### Связанные тесты:
+
+Когда первый тест падает, а следующие должны 
+выполняться, при этом не отделяясь как «пропущенные». 
+Добавляем параметр `dependsOnMethod` в `@Test`:
+
+```java
+@Test
+public void givenEmail_ifValid_thenTrue() {
+    boolean valid = email.contains("@");
+    assertEquals(valid, true);
+}
+ 
+@Test(dependsOnMethods = {"givenEmail_ifValid_thenTrue"})
+public void givenValidEmail_whenLoggedIn_thenTrue() {
+    LOGGER.info("Email {} valid >> logging in", email);
+}
+```
+
+### Параллельный запуск :
+
+Указываем атрибут `parallel` в теге `suite` 
+конфигурационного `XML`, значение `classes`:
+
+```xml
+<suite name="suite" parallel="classes" thread-count="2">
+    <test name="test suite">
+        <classes>
+        <class name="UI.RadioButtonTest" />
+            <class name="UI.SeleniumGridTest" />
+        </classes>
+    </test>
+</suite>
+```
+
+Если в `XML`-конфигурации имеется много test-тегов, 
+они все будут запущены параллельно, если указано 
+`parallel = “tests”`. Чтобы параллельно запустить 
+отдельные методы, указываем `parallel = “methods”`
+
+```java
+public class MultiThreadedTests {
+    
+    @Test(threadPoolSize = 5, invocationCount = 10, timeOut = 1000)
+    public void givenMethod_whenRunInThreads_thenCorrect() {
+        int count = Thread.activeCount();
+        assertTrue(count > 1);
+    }
+}
+```
+
+Значение `threadPoolSize` означает, что метод запущен 
+в `n` потоках. Значения `invocationCount` и `timeOut` 
+означают, что тест будет запущен `invocationCount` раз и 
+завершится, когда выйдет время ожидания `timeOut`.
+
 
 [Официальная документация](https://testng.org/)

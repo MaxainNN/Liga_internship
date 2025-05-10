@@ -1,0 +1,44 @@
+17:07:02.200 [main] INFO  base.BaseTest - Setting up before test suite.
+17:07:02.344 [main] INFO  base.BaseTest - Setting up before test.
+17:07:02.394 [main] INFO  base.BaseTest - Setting up before class.
+17:07:02.395 [main] INFO  base.BaseTest - Selenoid mode: false, URL: http://localhost:4444/wd/hub
+17:07:06.335 [main] INFO  base.BaseTest - Setting up before each test method
+17:07:06.962 [main] INFO  base.BaseTest - Test step_01 passed.
+17:07:07.506 [main] INFO  base.BaseTest - Setting up before each test method
+17:07:11.606 [main] ERROR base.BaseTest - Test step_02 failed!
+java.lang.AssertionError: expected [1] but found [[ERROR] Something went wrong. Cart is empty.]
+	at org.testng.Assert.fail(Assert.java:111) ~[testng-7.8.0.jar:7.8.0]
+	at org.testng.Assert.failNotEquals(Assert.java:1578) ~[testng-7.8.0.jar:7.8.0]
+	at org.testng.Assert.assertEqualsImpl(Assert.java:150) ~[testng-7.8.0.jar:7.8.0]
+	at org.testng.Assert.assertEquals(Assert.java:132) ~[testng-7.8.0.jar:7.8.0]
+	at org.testng.Assert.assertEquals(Assert.java:656) ~[testng-7.8.0.jar:7.8.0]
+	at org.testng.Assert.assertEquals(Assert.java:666) ~[testng-7.8.0.jar:7.8.0]
+	at UI.SauceDemoTest.step_02(SauceDemoTest.java:45) ~[test-classes/:?]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[?:?]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[?:?]
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139) ~[testng-7.8.0.jar:7.8.0]
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664) ~[testng-7.8.0.jar:7.8.0]
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:227) ~[testng-7.8.0.jar:7.8.0]
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50) ~[testng-7.8.0.jar:7.8.0]
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:957) ~[testng-7.8.0.jar:7.8.0]
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:200) ~[testng-7.8.0.jar:7.8.0]
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148) ~[testng-7.8.0.jar:7.8.0]
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128) ~[testng-7.8.0.jar:7.8.0]
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597) [?:?]
+	at org.testng.TestRunner.privateRun(TestRunner.java:848) [testng-7.8.0.jar:7.8.0]
+	at org.testng.TestRunner.run(TestRunner.java:621) [testng-7.8.0.jar:7.8.0]
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:443) [testng-7.8.0.jar:7.8.0]
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437) [testng-7.8.0.jar:7.8.0]
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:397) [testng-7.8.0.jar:7.8.0]
+	at org.testng.SuiteRunner.run(SuiteRunner.java:336) [testng-7.8.0.jar:7.8.0]
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52) [testng-7.8.0.jar:7.8.0]
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95) [testng-7.8.0.jar:7.8.0]
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1280) [testng-7.8.0.jar:7.8.0]
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1200) [testng-7.8.0.jar:7.8.0]
+	at org.testng.TestNG.runSuites(TestNG.java:1114) [testng-7.8.0.jar:7.8.0]
+	at org.testng.TestNG.run(TestNG.java:1082) [testng-7.8.0.jar:7.8.0]
+	at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65) [testng-rt.jar:?]
+	at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105) [testng-rt.jar:?]
+17:07:12.117 [main] INFO  base.BaseTest - Tearing down after all test's methods in class.
+17:07:12.300 [main] INFO  base.BaseTest - Tearing down after all test's methods.
+17:07:12.307 [main] INFO  base.BaseTest - Tearing down after test suite.

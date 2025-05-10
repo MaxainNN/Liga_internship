@@ -1,19 +1,20 @@
 ## Changelogs
 
-## Нужно сделать
+## 10.05
 
-- Дописан `Select Menu` тест (Дописать методы 2,3,4)
-- Дописан `SauceDemo` тест (Фикс 2 метода)
-- Пройти `CI` (написать новый скрипт для генерации отчета)
-- Описать `GitHub Actions` (+ Переписать текущий файл)
-- Описать `DevtoolsHandler` (Добавить в тесты обработку скриптов)
-- Дописан `SeleniumGrid` тест (Переписать название , добавить новые шаги)
-- Дописан `AllureReport` тест (Переписать название , добавить новые шаги)
-- Актуализировать `Jenkinsfile` (Протестировать с интеграцией `Selenoid`)
-- Добавить в `POM` : `Assembly plugin` , `Checkstyle plugin` , `Jacoco plugin`
-- Написать `TestRunner` для запуска тестов через `jar` файл
-- Дописать недостающие описания из `TODO` файла
-- В `Jenkins` описании , добавить описание интеграции
+- Добавлен `TestRunner` класс
+- Добавлены в `POM` : `Assembly plugin` , `Checkstyle plugin` , `Jacoco plugin`, `Enforcer plugin`
+- Описан `DevtoolsHandler`
+- Fix `CI` pipeline
+- Дописаны описания (доп. материалы)
+
+## 17.04
+
+- Добавлен `WebDriverManager`
+- Исправлен класс `Browser`
+- Добавлено логирование для `BaseTest`
+- Добавлены новые зависимости (`Javafaker`, `log4j`, `awaitility`)
+- Добавлены новые плагины (`Failsafe`, `Spotbugs`)
 
 ## 16.04
 

@@ -5,10 +5,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.DevtoolsHandler;
 
 import java.time.Duration;
 import java.util.List;
@@ -21,9 +23,13 @@ import static browser.Config.EXPLICIT_WAIT;
 public class BasePage {
 
     protected WebDriver driver;
+    protected DevtoolsHandler devTools;
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
+//        if (driver instanceof ChromeDriver) {
+//            this.devTools = new DevtoolsHandler((ChromeDriver) driver);
+//        }
     }
 
     /**

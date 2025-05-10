@@ -6,6 +6,8 @@ import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Step;
 import io.qameta.allure.Story;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -22,6 +24,7 @@ import static pages.demoqa.elements.DynamicPropertiesPage.BTN_ENABLE_AFTER;
 @Story("Тест Dynamic properties элементов")
 public class DynamicPropertiesTest extends BaseTest {
 
+    protected static final Logger logger = LogManager.getLogger(DynamicPropertiesTest.class);
     private DynamicPropertiesPage dynamicPropertiesPage;
 
     @BeforeClass
@@ -40,10 +43,10 @@ public class DynamicPropertiesTest extends BaseTest {
     @Step("Ожидание изменение цвета кнопки")
     public void step_02(){
         String initialColor = dynamicPropertiesPage.getColorBtn(BTN_COLOR_CHANGE);
-        System.out.println("[INFO] Initial color: " + initialColor);
+        logger.info("Initial color: " + initialColor);
         dynamicPropertiesPage.waitForColorChange();
         String afterChangeColor = dynamicPropertiesPage.getColorBtn(BTN_COLOR_CHANGE);
-        System.out.println("[INFO] Color after change" + afterChangeColor);
+        logger.info("Color after change" + afterChangeColor);
         Assert.assertNotSame(initialColor, afterChangeColor);
     }
 

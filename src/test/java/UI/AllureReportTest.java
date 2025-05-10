@@ -5,6 +5,7 @@ import io.qameta.allure.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import static io.qameta.allure.Allure.step;
 import static io.qameta.allure.SeverityLevel.CRITICAL;
 
 @Epic("UI: Sanity")
@@ -17,7 +18,9 @@ public class AllureReportTest extends BaseTest {
     @Severity(CRITICAL)
     @Owner("Максим Калугин")
     public void step_01(){
-        driver.get("https://testengineer.ru/");
+        step("Переход на главную страницу" , () -> {
+            driver.get("https://testengineer.ru/");
+        });
         Assert.assertTrue(true);
     }
 }

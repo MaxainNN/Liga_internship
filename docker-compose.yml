@@ -17,7 +17,7 @@ services:
     networks:
       - selenoid-network
 
-  # Selenoid UI (веб-интерфейс для мониторинга)
+  # Selenoid UI (веб-интерфейс)
   selenoid-ui:
     image: aerokube/selenoid-ui:latest
     ports:
@@ -30,7 +30,6 @@ services:
     networks:
       - selenoid-network
 
-  # Jenkins (для автоматизации тестов)
   jenkins:
     image: jenkins/jenkins:lts
     ports:

@@ -30,7 +30,10 @@ jobs:
             ${{ runner.os }}-m2-
 
       - name: Build and test with Maven
-        run: mvn clean test
+        run: |
+          mvn clean test
+          mvn allure:report
+        continue-on-error: true
 #          if [[ "$RUNNER_OS" == "Linux" ]]; then
 #            echo "Running tests with Linux driver"
 #            mvn clean test -Dwebdriver.chrome.driver=$(pwd)/src/main/resources/chromedriver
@@ -42,11 +45,24 @@ jobs:
 #            exit 1
 #          fi
 
+      - name: Archive Allure results
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+         name: allure-results
+         path: target/allure-results
+
+      - name: Generate Allure Report
+        run: |
+          mvn allure:serve
+          continue-on-error: true
+
       - name: Deploy report to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
+        if: always()
         with:
             github_token: ${{ secrets.GITHUB_TOKEN }}
-            publish_dir: target/
+            publish_dir: target/site/allure-maven-plugin
             keep_files: true
             destination_dir: reports
 

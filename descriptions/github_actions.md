@@ -65,5 +65,8 @@ jobs:
           path: target/allure-results/
 ```
 
+<img src="../images/git_actions_scr.png" width="1000" height="500">
+
 Пример отчетов и логов после прохожения `CI` :
-//TODO
+
+<img src="../images/git_actions_scr_1.png" width="1000" height="480">
