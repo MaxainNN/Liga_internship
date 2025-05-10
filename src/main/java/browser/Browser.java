@@ -228,6 +228,10 @@ public class Browser {
                  * Скрывает использование ChromeDriver от JavaScript-детекторов
                  */
                 chromeOptions.setExperimentalOption("excludeSwitches", Arrays.asList("enable-automation"));
+                chromeOptions.setExperimentalOption("prefs", Map.of(
+                        "credentials_enable_service", false,
+                        "profile.password_manager_enabled", false
+                ));
                 /**
                  * Настройка , отвечающая за стратегию загрузки страницы
                  * Может быть normal , eager, none

@@ -130,7 +130,6 @@ public class ExtentTestNGListener implements ITestListener {
      * Метод для создания скриншота
      * @param driver экземпляр WebDriver
      * @param testName Имя теста
-     * @return Путь к сохраненному скриншоту
      */
     private String takeScreenshot(WebDriver driver, String testName){
         if (driver instanceof TakesScreenshot) {
