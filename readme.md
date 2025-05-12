@@ -72,11 +72,13 @@
 │   │   │   │   └── sauceDemo # Классы для страницы "SauceDemo"
 │   │   │   └── utils # Вспомогательные классы
 │   │   │       └── DataGenerator.java # Вспомогательный класс для генерации данных
-│   │   └── resources # Ресурсы для проекта (Драйверы)
+│   │   └── resources # Ресурсы для проекта (Драйверы, файлы для описания логирования , проверки стиля кода)
 │   └── test
 │       ├── java
 │       │   ├── base # Базовый класс теста
 │       │   │   └── BaseTest.java # Базовый класс для инициализации и завершения тестов
+│       │   ├── runner # раннер тестов
+│       │   │   └── TestRunner.java # Раннер для тестов через jar файл
 │       │   ├── UI  # Классы для тестирования UI (интерфейса веб-сервиса)
 │       │   └── utils # Вспомогательные классы для тестов
 │       │       ├── ChromeOnlyTransformer.java # Трансформер аннотаций
@@ -86,7 +88,9 @@
 │           ├── testFiles # Тестовые файлы для загрузки
 │           ├── googleProfile # Кэш с данными профиля Google 
 │           └── testng.xml # Конфигурация TestNG
-└── run_tests.bat # Скрипт для запуска тестов и просмотра отчета (для Windows)
+├── run_tests.bat # Скрипт для запуска тестов и просмотра отчета (для Windows)
+├── Jenkinsfile # Pipiline для Jenkins
+└── docker-compose.yml # Docker compose файл для запуска сервисов Jenkins и Selenoid
 ```
 
 
@@ -131,6 +135,10 @@ mvn verify
 - `target/surefire-reports/index.html` - `Surefire` отчет
 - `target/TestsReport.html` - `ExtentReport` отчет
 
+<img src="images/Liga_internship_report_new.png" width="1000" height="420">
+
+<img src="images/Liga_internship_report_new_1.png" width="1000" height="420">
+
 ## После выполения команд :
 
 ```bash
@@ -145,6 +153,9 @@ mvn surefire-report:report-only
 
 - `target/site/surefire-report.html` - `Surefire site` отчет
 
+<img src="images/Liga_internship_report_new_3.png" width="1000" height="420">
+<img src="images/Liga_internship_report_new_4.png" width="1000" height="420">
+
 ## После выполнения команды :
 
 ```bash
@@ -155,6 +166,10 @@ mvn allure:report
 
 - `target/site/allure-report/index.html` - `Allure` отчет
 
+<img src="images/Liga_internship_report_new_5.png" width="1000" height="420">
+<img src="images/Liga_internship_report_new_6.png" width="1000" height="420">
+<img src="images/Liga_internship_report_new_7.png" width="1000" height="420">
+
 ## Для генерации отчета с анализом кода использовать :
 
 ```bash
@@ -164,6 +179,8 @@ mvn spotbugs:check
 ## Будет доступен отчет:
 
 - `target/spotbugs.html` - `Spotbugs` отчет
+
+<img src="images/Liga_internship_report_new_2.png" width="1000" height="420">
 
 ## Пример отчета:
 

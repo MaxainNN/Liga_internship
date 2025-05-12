@@ -39,3 +39,4 @@ build/
 
 ### Test dumps
 /src/test/resources/googleProfile/
+/logs
