@@ -1,5 +1,12 @@
 ## Changelogs
 
+## 12.05:
+
+- Исправлен `POM.xml`
+- Дописан и исправлен `AllureReportTest.`
+- Добавлен игнор логов в `gitignore`
+- Исправлен `checkstyle.xml`
+
 ## 10.05
 
 - Добавлен `TestRunner` класс
